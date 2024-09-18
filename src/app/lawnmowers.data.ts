@@ -7,7 +7,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     brand: 'Bosh',
     model: 'Home and Garden ARM',
     engineDisplacement: 100,
-    tankCapacity: 750,
+    tankCapacity: 0.75,
     cuttingLevelsAmount: 5,
   },
   {
@@ -15,7 +15,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     brand: 'Lawnmower Masterz',
     model: 'Grass Destroyer',
     engineDisplacement: 200,
-    tankCapacity: 750,
+    tankCapacity: 0.75,
     cuttingLevelsAmount: 5,
   },
   {
@@ -23,7 +23,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     brand: 'Bosh',
     model: 'Home and Garden MRA500',
     engineDisplacement: 125,
-    tankCapacity: 1000,
+    tankCapacity: 1,
     cuttingLevelsAmount: 5,
   },
   {

@@ -5,6 +5,7 @@ import { LAWNMOWNERS } from '../../lawnmowers.data';
 import { ReactiveFormsModule } from '@angular/forms';
 import { pairwise, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { ConfigurationFormService } from './configuration-form.service';
+import { Lawnmower } from '../../shared/models/lawnmower.model';
 
 @Component({
   selector: 'app-configuration-form',
@@ -17,10 +18,12 @@ import { ConfigurationFormService } from './configuration-form.service';
 export class ConfigurationFormComponent implements OnInit, OnDestroy {
   brands: string[] = [];
   models: string[] = [];
+  selectedModel?: Lawnmower;
 
   readonly lawnmowers = LAWNMOWNERS;
   readonly configurationForm = this._configurationFormService.initForm();
-  readonly engineTypes = Object.values(Engine);
+  readonly engineTypes = Engine
+  readonly engines = Object.values(Engine);
 
   private readonly _destroy$ = new Subject<void>();
 
@@ -69,6 +72,15 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
 
         if (prev?.model !== next?.model) {
           //SHOW LAWNMOWER DATA
+
+          this.selectedModel = this.lawnmowers.find(
+            (lm) =>
+              lm.engine === next?.engine &&
+              lm.brand === next?.brand &&
+              lm.model === next?.model
+          );
+
+          console.log('this.selectedModel',this.selectedModel)
         }
       });
   }
