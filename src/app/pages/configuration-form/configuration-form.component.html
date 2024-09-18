@@ -1,1 +1,29 @@
-<p>FORM</p>
+<section class="configuration">
+  <form [formGroup]="configurationForm">
+    <mat-form-field>
+      <mat-label>Engine Type</mat-label>
+      <mat-select formControlName="engine">
+        @for (engine of engineTypes; track $index) {
+        <mat-option [value]="engine">{{engine}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Brand</mat-label>
+      <mat-select formControlName="brand">
+        @for (brand of brands; track $index) {
+        <mat-option [value]="brand">{{brand}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <mat-select formControlName="model">
+        @for (model of models; track $index) {
+        <mat-option [value]="model">{{model}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+</section>
