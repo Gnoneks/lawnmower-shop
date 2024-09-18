@@ -2,20 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { Engine } from '../../shared/models/engine.enum';
 import { LAWNMOWNERS } from '../../lawnmowers.data';
-import {
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Subject, takeUntil, tap } from 'rxjs';
-
-interface ConfigurationForm {
-  engine: FormControl<Engine | null>;
-  brand: FormControl<string | null>;
-  model: FormControl<string | null>;
-}
+import { ReactiveFormsModule } from '@angular/forms';
+import { pairwise, startWith, Subject, takeUntil, tap } from 'rxjs';
+import { ConfigurationFormService } from './configuration-form.service';
 
 @Component({
   selector: 'app-configuration-form',
@@ -23,83 +12,65 @@ interface ConfigurationForm {
   imports: [MatSelectModule, ReactiveFormsModule],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',
+  providers: [ConfigurationFormService],
 })
 export class ConfigurationFormComponent implements OnInit, OnDestroy {
   brands: string[] = [];
   models: string[] = [];
 
   readonly lawnmowers = LAWNMOWNERS;
-  readonly configurationForm = this._initForm();
+  readonly configurationForm = this._configurationFormService.initForm();
   readonly engineTypes = Object.values(Engine);
 
   private readonly _destroy$ = new Subject<void>();
 
-  constructor(private readonly _fb: NonNullableFormBuilder) {}
+  constructor(
+    private readonly _configurationFormService: ConfigurationFormService
+  ) {}
 
   ngOnInit() {
     this._listenToEngineChange();
   }
 
   private _listenToEngineChange() {
-    const { engine, brand, model } = this.configurationForm.controls;
+    this.configurationForm.valueChanges
+      .pipe(startWith(null), pairwise(), takeUntil(this._destroy$))
+      .subscribe(([prev, next]) => {
+        const { engine, brand, model } = this.configurationForm.controls;
+        const selectedEngine = next?.engine;
 
-    engine.valueChanges
-      .pipe(
-        tap(() => {
-          brand.disabled && brand.enable();
-          brand.setValue('', { emitEvent: false });
+        if (prev?.engine !== selectedEngine) {
+          brand.disabled && brand.enable({ emitEvent: false });
+          brand.reset();
 
-          model.enabled && model.disable();
-          model.setValue('', { emitEvent: false });
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe((selectedEngine) => {
-        if (selectedEngine) {
+          model.enabled && model.disable({ emitEvent: false });
+          model.reset();
+
           const filteredLawnmowers = this.lawnmowers.filter(
             ({ engine }) => engine === selectedEngine
           );
 
           this.brands = [...new Set(filteredLawnmowers.map((lm) => lm.brand))];
         }
-      });
 
-    brand.valueChanges
-      .pipe(
-        tap(() => {
-          model.disabled && model.enable();
-          model.setValue('');
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe((selectedBrand) => {
-        console.log(selectedBrand);
-        if (selectedBrand) {
+        if (prev?.brand !== next?.brand) {
+          const selectedBrand = next?.brand;
+
+          model.disabled && model.enable({ emitEvent: false });
+          model.reset();
+
           const filteredLawnmowers = this.lawnmowers.filter(
             ({ brand, engine }) =>
-              brand === selectedBrand &&
-              engine === this.configurationForm.value.engine
+              brand === selectedBrand && engine === selectedEngine
           );
 
           this.models = filteredLawnmowers.map((lm) => lm.model);
         }
+
+        if (prev?.model !== next?.model) {
+          //SHOW LAWNMOWER DATA
+        }
       });
-  }
-
-  private _initForm(): FormGroup<ConfigurationForm> {
-    const form = this._fb.group<ConfigurationForm>({
-      engine: new FormControl(null, Validators.required),
-      brand: new FormControl(
-        { value: '', disabled: true },
-        Validators.required
-      ),
-      model: new FormControl(
-        { value: '', disabled: true },
-        Validators.required
-      ),
-    });
-
-    return form;
   }
 
   ngOnDestroy() {
