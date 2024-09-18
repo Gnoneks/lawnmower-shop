@@ -8,7 +8,7 @@ export class ConfigurationFormService {
   constructor(private readonly _fb: NonNullableFormBuilder) { }
 
   initForm(): FormGroup<ConfigurationForm> {
-    const form = this._fb.group<ConfigurationForm>({
+    return this._fb.group<ConfigurationForm>({
       engine: new FormControl(null, Validators.required),
       brand: new FormControl(
         { value: '', disabled: true },
@@ -19,8 +19,6 @@ export class ConfigurationFormService {
         Validators.required
       ),
     });
-
-    return form;
   }
 
 }
