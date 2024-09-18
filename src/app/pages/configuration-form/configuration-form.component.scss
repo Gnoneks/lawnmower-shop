@@ -1,0 +1,10 @@
+.configuration {
+    margin: auto;
+    max-width: 1280px;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+}

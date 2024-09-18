@@ -1,5 +1,7 @@
+import { Engine } from './engine.enum';
+
 export interface Lawnmower {
-  engine: 'Combustion' | 'Electric' | 'Accumulator';
+  engine: Engine;
   brand: string;
   model: string;
   engineDisplacement?: number;

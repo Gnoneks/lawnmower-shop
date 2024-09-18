@@ -1,1 +1,70 @@
-<p>FORM</p>
+<section class="configuration">
+  <form class="configuration__form" [formGroup]="configurationForm">
+    <mat-form-field>
+      <mat-label>Engine Type</mat-label>
+      <mat-select formControlName="engine">
+        @for (engine of engines; track $index) {
+        <mat-option [value]="engine">{{engine}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Brand</mat-label>
+      <mat-select formControlName="brand">
+        @for (brand of brands; track $index) {
+        <mat-option [value]="brand">{{brand}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <mat-select formControlName="model">
+        @for (model of models; track $index) {
+        <mat-option [value]="model">{{model}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <hr />
+</section>
+@if (selectedModel) {
+<section class="configuration__data">
+  <h3>{{selectedModel.brand}} {{selectedModel.model}}</h3>
+  @switch (selectedModel.engine ) {
+  @case (engineTypes.ACCUMULATOR) {
+  <div class="configuration__property">
+    Accumulator Amount: {{selectedModel.accumulatorAmount}}
+  </div>
+  <div class="configuration__property">
+    Accumulator Capacity: {{selectedModel.accumulatorCapacity}}Ah
+  </div>
+  <div class="configuration__property">
+    Color: {{selectedModel.color}}
+  </div>
+  }
+  @case (engineTypes.COMBUSTION) {
+  <div class="configuration__property">
+    Engine Displacement: {{selectedModel.engineDisplacement}}cm3
+  </div>
+  <div class="configuration__property">
+    Tank Capacity: {{selectedModel.tankCapacity}}L
+  </div>
+  <div class="configuration__property">
+    Cutting Levels Amount: {{selectedModel.engineDisplacement}}
+  </div>
+  }
+  @case (engineTypes.ELECTRIC) {
+  <div class="configuration__property">
+    Cable Length: {{selectedModel.cableLength}}m
+  </div>
+  <div class="configuration__property">
+    Blades Amount: {{selectedModel.bladesAmount}}
+  </div>
+  <div class="configuration__property">
+    Color: {{selectedModel.color}}
+  </div>
+  }
+  }
+</section>
+}
+<a [disabled]="!selectedModel" mat-raised-button routerLink="/order">Proceed to order</a>

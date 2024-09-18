@@ -1,32 +1,33 @@
-import { Lawnmower } from './lawnmower.model';
+import { Engine } from './shared/models/engine.enum';
+import { Lawnmower } from './shared/models/lawnmower.model';
 
 export const LAWNMOWNERS: Lawnmower[] = [
   {
-    engine: 'Combustion',
+    engine: Engine.COMBUSTION,
     brand: 'Bosh',
     model: 'Home and Garden ARM',
     engineDisplacement: 100,
-    tankCapacity: 750,
+    tankCapacity: 0.75,
     cuttingLevelsAmount: 5,
   },
   {
-    engine: 'Combustion',
+    engine: Engine.COMBUSTION,
     brand: 'Lawnmower Masterz',
     model: 'Grass Destroyer',
     engineDisplacement: 200,
-    tankCapacity: 750,
+    tankCapacity: 0.75,
     cuttingLevelsAmount: 5,
   },
   {
-    engine: 'Combustion',
+    engine: Engine.COMBUSTION,
     brand: 'Bosh',
     model: 'Home and Garden MRA500',
     engineDisplacement: 125,
-    tankCapacity: 1000,
+    tankCapacity: 1,
     cuttingLevelsAmount: 5,
   },
   {
-    engine: 'Electric',
+    engine: Engine.ELECTRIC,
     brand: 'Hybix',
     model: 'Cutting Edge',
     cableLength: 20,
@@ -34,7 +35,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     color: 'Green',
   },
   {
-    engine: 'Electric',
+    engine: Engine.ELECTRIC,
     brand: 'Lawnmower Masterz',
     model: 'Grass Eater',
     cableLength: 25,
@@ -42,7 +43,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     color: 'Brown',
   },
   {
-    engine: 'Electric',
+    engine: Engine.ELECTRIC,
     brand: 'Bosh',
     model: 'ARS X',
     cableLength: 25,
@@ -50,7 +51,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     color: 'Yellow',
   },
   {
-    engine: 'Accumulator',
+    engine: Engine.ACCUMULATOR,
     brand: 'Hybix',
     model: 'Edge Lord',
     accumulatorAmount: 2,
@@ -58,7 +59,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     color: 'Black',
   },
   {
-    engine: 'Accumulator',
+    engine: Engine.ACCUMULATOR,
     brand: 'Bosh',
     model: 'Faz Bar',
     accumulatorAmount: 2,
@@ -66,7 +67,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     color: 'Orange',
   },
   {
-    engine: 'Accumulator',
+    engine: Engine.ACCUMULATOR,
     brand: 'Random Company',
     model: 'Yes',
     accumulatorAmount: 3,
