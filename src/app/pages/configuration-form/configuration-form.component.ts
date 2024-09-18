@@ -3,14 +3,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { Engine } from '../../shared/models/engine.enum';
 import { LAWNMOWNERS } from '../../lawnmowers.data';
 import { ReactiveFormsModule } from '@angular/forms';
-import { pairwise, startWith, Subject, takeUntil, tap } from 'rxjs';
+import { pairwise, startWith, Subject, takeUntil } from 'rxjs';
 import { ConfigurationFormService } from './configuration-form.service';
 import { Lawnmower } from '../../shared/models/lawnmower.model';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-configuration-form',
   standalone: true,
-  imports: [MatSelectModule, ReactiveFormsModule],
+  imports: [MatSelectModule, ReactiveFormsModule, MatButtonModule, RouterLink],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',
   providers: [ConfigurationFormService],
@@ -22,7 +24,7 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
 
   readonly lawnmowers = LAWNMOWNERS;
   readonly configurationForm = this._configurationFormService.initForm();
-  readonly engineTypes = Engine
+  readonly engineTypes = Engine;
   readonly engines = Object.values(Engine);
 
   private readonly _destroy$ = new Subject<void>();
@@ -71,16 +73,12 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
         }
 
         if (prev?.model !== next?.model) {
-          //SHOW LAWNMOWER DATA
-
           this.selectedModel = this.lawnmowers.find(
             (lm) =>
               lm.engine === next?.engine &&
               lm.brand === next?.brand &&
               lm.model === next?.model
           );
-
-          console.log('this.selectedModel',this.selectedModel)
         }
       });
   }
