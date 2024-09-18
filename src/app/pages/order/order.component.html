@@ -20,35 +20,6 @@
       <label for="deliveryDate">Termin dostawy</label>
       <p-calendar id="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
     </div>
-    <div formGroupName="deliveryAddress">
-      <div>
-        <label for="firstName">Imię</label>
-        <input type="text" id="firstName" formControlName="firstName" pInputText />
-      </div>
-      <div>
-        <label for="lastName">Nazwisko</label>
-        <input type="text" id="lastName" formControlName="lastName" pInputText />
-      </div>
-      <div>
-        <label for="city">Miasto</label>
-        <input type="text" id="city" formControlName="city" pInputText />
-      </div>
-      <div>
-        <label for="street">Ulica</label>
-        <input type="text" id="street" formControlName="street" pInputText />
-      </div>
-      <div>
-        <label for="houseNumber">Numer Domu</label>
-        <input type="text" id="houseNumber" formControlName="houseNumber" pInputText />
-      </div>
-      <div>
-        <label for="apartmentNumber">Numer Mieszkania</label>
-        <input type="text" id="apartmentNumber" formControlName="apartmentNumber" pInputText />
-      </div>
-      <div>
-        <label for="zipCode">Kod Pocztowy</label>
-        <p-inputMask formControlName="zipCode" mask="99-999" placeholder="99-999" />
-      </div>
-    </div>
+    <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
   </form>
 </section>

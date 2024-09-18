@@ -6,8 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputMaskModule } from 'primeng/inputmask';
+import { RecipientFormComponent } from './components/recipient-form/recipient-form.component';
 
 @Component({
   selector: 'app-order',
@@ -16,8 +15,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     ReactiveFormsModule,
     RadioButtonModule,
     CalendarModule,
-    InputTextModule,
-    InputMaskModule,
+    RecipientFormComponent,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
