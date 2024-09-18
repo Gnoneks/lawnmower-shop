@@ -13,6 +13,6 @@ export const DELIVERY_TYPES: SelectableOption[] = [
   },
   {
     value: DeliveryType.SERVICE_POINT_PICKUP,
-    label: 'BLik',
+    label: 'Odbiór w punkcie obsługowym',
   },
 ];

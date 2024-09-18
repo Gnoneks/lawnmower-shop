@@ -3,15 +3,15 @@ import { SelectableOption } from '../models/selectable-option.model';
 
 export const PAYMENT_TYPES: SelectableOption[] = [
   {
-    value: PaymentType.CASH,
-    label: 'Gotówka',
-  },
-  {
     value: PaymentType.CARD,
     label: 'Karta',
   },
   {
     value: PaymentType.BLIK,
     label: 'BLik',
+  },
+  {
+    value: PaymentType.CASH,
+    label: 'Gotówka',
   },
 ];
