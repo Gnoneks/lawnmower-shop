@@ -1,21 +1,23 @@
 <section>
-  <form>
-    <div>PAYMENT
+  <form [formGroup]="orderForm">
+    <div>
+      <mat-label>Sposób zapłaty</mat-label>
       <mat-radio-group>
-        <mat-radio-button>Gotówka</mat-radio-button>
-        <mat-radio-button>Karta</mat-radio-button>
-        <mat-radio-button>BLIK</mat-radio-button>
+        @for (paymentType of paymentTypes; track $index) {
+        <mat-radio-button [value]="paymentType.value">{{paymentType.label}}</mat-radio-button>
+        }
       </mat-radio-group>
     </div>
-    <div>Delivery
+    <div>
+      <mat-label>Sposób dostawy</mat-label>
       <mat-radio-group>
-        <mat-radio-button>Kurier</mat-radio-button>
-        <mat-radio-button>Odbiór osobisty</mat-radio-button>
-        <mat-radio-button>Odbiór w punkcie usługowym</mat-radio-button>
+        @for (deliveryType of deliveryTypes; track $index) {
+        <mat-radio-button [value]="deliveryType.value">{{deliveryType.label}}</mat-radio-button>
+        }
       </mat-radio-group>
     </div>
     <div>Data i godzina dostawy
-      
+
     </div>
     <div>
       Delivery Address
