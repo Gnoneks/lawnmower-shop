@@ -1,30 +1,35 @@
-<div [formGroup]="recipientForm()">
-  <div>
-    <label for="firstName">Imię</label>
-    <input type="text" id="firstName" formControlName="firstName" pInputText />
+<form class="recipient-form" [formGroup]="recipientForm()">
+  <div class="my-2">
+    <p-floatLabel>
+      <input type="text" inputId="firstName" formControlName="firstName" pInputText />
+      <label for="firstName">Imię*</label>
+    </p-floatLabel>
+    @if (recipientForm().controls.firstName.invalid && recipientForm().controls.firstName.touched) {
+    <p class="recipient-form__error small">Imię nie może być puste</p>
+    }
   </div>
-  <div>
-    <label for="lastName">Nazwisko</label>
-    <input type="text" id="lastName" formControlName="lastName" pInputText />
-  </div>
-  <div>
-    <label for="city">Miasto</label>
-    <input type="text" id="city" formControlName="city" pInputText />
-  </div>
-  <div>
-    <label for="street">Ulica</label>
-    <input type="text" id="street" formControlName="street" pInputText />
-  </div>
-  <div>
-    <label for="houseNumber">Numer Domu</label>
-    <input type="text" id="houseNumber" formControlName="houseNumber" pInputText />
-  </div>
-  <div>
+  <p-floatLabel>
+    <input type="text" inputId="lastName" formControlName="lastName" pInputText />
+    <label for="lastName">Nazwisko*</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input type="text" inputId="city" formControlName="city" pInputText />
+    <label for="city">Miasto*</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input type="text" inputId="street" formControlName="street" pInputText />
+    <label for="street">Ulica*</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input type="text" inputId="houseNumber" formControlName="houseNumber" pInputText />
+    <label for="houseNumber">Numer Domu*</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input type="text" inputId="apartmentNumber" formControlName="apartmentNumber" pInputText />
     <label for="apartmentNumber">Numer Mieszkania</label>
-    <input type="text" id="apartmentNumber" formControlName="apartmentNumber" pInputText />
-  </div>
-  <div>
-    <label for="zipCode">Kod Pocztowy</label>
+  </p-floatLabel>
+  <p-floatLabel>
     <p-inputMask formControlName="zipCode" mask="99-999" placeholder="99-999" />
-  </div>
-</div>
+    <label for="zipCode">Kod Pocztowy*</label>
+  </p-floatLabel>
+</form>

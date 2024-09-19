@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { PAYMENT_TYPES } from './data/payment-types.data';
 import { DELIVERY_TYPES } from './data/delivery-types.data';
@@ -10,6 +10,9 @@ import { RecipientFormComponent } from './components/recipient-form/recipient-fo
 import { GetFormByIdPipe } from './get-form-by-id.pipe';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-order',
@@ -22,10 +25,12 @@ import { Router, RouterLink } from '@angular/router';
     GetFormByIdPipe,
     ButtonModule,
     RouterLink,
+    ToastModule,
+    FloatLabelModule,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
-  providers: [OrderService, provideNativeDateAdapter()],
+  providers: [OrderService, provideNativeDateAdapter(), MessageService],
 })
 export class OrderComponent implements OnInit {
   readonly orderForm = this._orderService.getOrderForm();
@@ -37,7 +42,9 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private readonly _orderService: OrderService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _messageService: MessageService,
+    private readonly _cdRef: ChangeDetectorRef
   ) {}
 
   addNewRecipient() {
@@ -59,9 +66,25 @@ export class OrderComponent implements OnInit {
 
   goToSummary(event: MouseEvent) {
     event.preventDefault();
+    console.log(
+      this.orderForm.controls.deliveryAddress.controls.firstName.errors
+    );
+    if (this.orderForm.valid) {
+      this._router.navigateByUrl('/summary');
+    } else {
+      this.orderForm.markAllAsTouched();
+      this.orderForm.updateValueAndValidity();
+
+      this._messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Formularz wypełniony niepoprawnie!',
+      });
+
+      this._cdRef.detectChanges();
+    }
 
     //TODO Save data to global service
-    this._router.navigateByUrl('/summary');
   }
 
   ngOnInit() {

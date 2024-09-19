@@ -33,9 +33,9 @@
               }
             ],
             "styles": [
+              "src/styles.scss",
               "node_modules/primeng/resources/themes/lara-dark-amber/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.scss"
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },

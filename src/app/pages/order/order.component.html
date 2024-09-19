@@ -1,6 +1,7 @@
-<section>
-  <form class="card flex justify-content-center" [formGroup]="orderForm">
+<section class="order">
+  <form class="card flex justify-content-center order__form" [formGroup]="orderForm">
     <div class="flex align-items-center">
+      Rodzaj Płatności*
       @for (paymentType of paymentTypes; track $index) {
       <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
       <label [for]="paymentType.value">
@@ -9,6 +10,7 @@
       }
     </div>
     <div class="flex align-items-center">
+      Typ Dostawy*
       @for (deliveryType of deliveryTypes; track $index) {
       <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
       <label [for]="deliveryType.value">
@@ -16,10 +18,10 @@
       </label>
       }
     </div>
-    <div>
-      <label for="deliveryDate">Termin dostawy</label>
-      <p-calendar id="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
-    </div>
+    <p-floatLabel>
+      <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
+      <label for="deliveryDate">Termin dostawy*</label>
+    </p-floatLabel>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
     <div>
       @for (id of recipientsIds; track $index) {
@@ -34,10 +36,11 @@
     <div>
       <a routerLink="/" class="p-button font-bold">
         Go back
-    </a>
+      </a>
       <a href="/summary" class="p-button font-bold" (click)="goToSummary($event)">
         Go to summary
-    </a>
+      </a>
     </div>
   </form>
 </section>
+<p-toast />
