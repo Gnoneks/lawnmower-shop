@@ -1,29 +1,8 @@
 <section class="configuration">
   <form class="configuration__form" [formGroup]="configurationForm">
-    <mat-form-field>
-      <mat-label>Engine Type</mat-label>
-      <mat-select formControlName="engine">
-        @for (engine of engines; track $index) {
-        <mat-option [value]="engine">{{engine}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Brand</mat-label>
-      <mat-select formControlName="brand">
-        @for (brand of brands; track $index) {
-        <mat-option [value]="brand">{{brand}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Model</mat-label>
-      <mat-select formControlName="model">
-        @for (model of models; track $index) {
-        <mat-option [value]="model">{{model}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+    <p-dropdown [options]="engines" formControlName="engine" placeholder="Rodzaj Silnika" />
+    <p-dropdown [options]="brands" formControlName="brand" placeholder="Marka" />
+    <p-dropdown [options]="models" formControlName="model" placeholder="Model" />
   </form>
   <hr />
 </section>
@@ -67,4 +46,5 @@
   }
 </section>
 }
-<a [disabled]="!selectedModel" mat-raised-button routerLink="/order">Proceed to order</a>
+
+<a class="p-button font-bold" href="/order" (click)="proceedToOrder($event)">Proceed to order</a>

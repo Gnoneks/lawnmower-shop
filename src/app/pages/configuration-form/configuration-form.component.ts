@@ -1,13 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatSelectModule } from '@angular/material/select';
 import { Engine } from '../../shared/models/engine.enum';
 import { LAWNMOWNERS } from '../../lawnmowers.data';
 import { ReactiveFormsModule } from '@angular/forms';
 import { pairwise, startWith, Subject, takeUntil } from 'rxjs';
 import { ConfigurationFormService } from './configuration-form.service';
 import { Lawnmower } from '../../shared/models/lawnmower.model';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { Store } from '@ngrx/store';
+import { storeLawnmower } from '../../store/order.actions';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-configuration-form',
