@@ -21,5 +21,15 @@
       <p-calendar id="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
     </div>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
+    <div>
+      @for (id of recipientsIds; track $index) {
+      <p>{{id}}</p>
+      <div>
+        <app-recipient-form [recipientForm]="orderForm.controls.userAddresses | getFormById : id"></app-recipient-form>
+        <button (click)="removeRecipient(id)" [disabled]="recipientsIds.length <= 1">Remove recipient</button>
+      </div>
+      }
+      <button (click)="addNewRecipient()">Add new recipient</button>
+    </div>
   </form>
 </section>

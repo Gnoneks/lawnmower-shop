@@ -1,7 +1,8 @@
 import { Component, input } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
+import { RecipientForm } from '../../models/order-form.model';
 
 @Component({
   selector: 'app-recipient-form',
@@ -11,5 +12,5 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './recipient-form.component.scss',
 })
 export class RecipientFormComponent {
-  recipientForm = input.required<any>();
+  recipientForm = input.required<FormGroup<RecipientForm>>();
 }
