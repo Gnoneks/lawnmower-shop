@@ -1,1 +1,51 @@
-<p>ORDER</p>
+<section class="order">
+  <form class="card flex justify-content-center order__form" [formGroup]="orderForm">
+    <div class="flex align-items-center">
+      Rodzaj Płatności*
+      @for (paymentType of paymentTypes; track $index) {
+      <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
+      <label [for]="paymentType.value">
+        {{paymentType.label}}
+      </label>
+      }
+    </div>
+    <div class="flex align-items-center">
+      Typ Dostawy*
+      @for (deliveryType of deliveryTypes; track $index) {
+      <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
+      <label [for]="deliveryType.value">
+        {{deliveryType.label}}
+      </label>
+      }
+    </div>
+    <div>
+      <p-floatLabel>
+        <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
+        <label for="deliveryDate">Termin dostawy*</label>
+      </p-floatLabel>
+      @if (orderForm.controls.deliveryDate.invalid && orderForm.controls.deliveryDate.touched) {
+      <p class="form-error">Proszę wybrać termin dostawy</p>
+      }
+    </div>
+    <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
+    <div>
+      @for (id of recipientsIds; track $index) {
+      <p>{{id}}</p>
+      <div>
+        <app-recipient-form [recipientForm]="orderForm.controls.userAddresses | getFormById : id"></app-recipient-form>
+        <button (click)="removeRecipient(id)" [disabled]="recipientsIds.length <= 1">Remove recipient</button>
+      </div>
+      }
+      <button (click)="addNewRecipient()">Add new recipient</button>
+    </div>
+    <div>
+      <a routerLink="/" class="p-button font-bold">
+        Go back
+      </a>
+      <a href="/summary" class="p-button font-bold" (click)="goToSummary($event)">
+        Go to summary
+      </a>
+    </div>
+  </form>
+</section>
+<p-toast />
