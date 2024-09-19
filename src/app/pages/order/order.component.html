@@ -31,5 +31,13 @@
       }
       <button (click)="addNewRecipient()">Add new recipient</button>
     </div>
+    <div>
+      <a routerLink="/" class="p-button font-bold">
+        Go back
+    </a>
+      <a href="/summary" class="p-button font-bold" (click)="goToSummary($event)">
+        Go to summary
+    </a>
+    </div>
   </form>
 </section>

@@ -8,6 +8,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { RecipientFormComponent } from './components/recipient-form/recipient-form.component';
 import { GetFormByIdPipe } from './get-form-by-id.pipe';
+import { ButtonModule } from 'primeng/button';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -18,6 +20,8 @@ import { GetFormByIdPipe } from './get-form-by-id.pipe';
     CalendarModule,
     RecipientFormComponent,
     GetFormByIdPipe,
+    ButtonModule,
+    RouterLink,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
@@ -31,7 +35,10 @@ export class OrderComponent implements OnInit {
   readonly paymentTypes = PAYMENT_TYPES;
   readonly deliveryTypes = DELIVERY_TYPES;
 
-  constructor(private readonly _orderService: OrderService) {}
+  constructor(
+    private readonly _orderService: OrderService,
+    private readonly _router: Router
+  ) {}
 
   addNewRecipient() {
     const newId = Math.floor(Math.random() * 10000);
@@ -48,6 +55,13 @@ export class OrderComponent implements OnInit {
 
     this.recipientsIds.splice(idx, 1);
     this._orderService.removeRecipient(id);
+  }
+
+  goToSummary(event: MouseEvent) {
+    event.preventDefault();
+
+    //TODO Save data to global service
+    this._router.navigateByUrl('/summary');
   }
 
   ngOnInit() {
