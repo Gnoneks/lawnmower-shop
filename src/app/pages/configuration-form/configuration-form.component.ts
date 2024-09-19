@@ -14,7 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 @Component({
   selector: 'app-configuration-form',
   standalone: true,
-  imports: [MatSelectModule, ReactiveFormsModule, MatButtonModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, ButtonModule, DropdownModule],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',
   providers: [ConfigurationFormService],
@@ -32,7 +32,9 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
   private readonly _destroy$ = new Subject<void>();
 
   constructor(
-    private readonly _configurationFormService: ConfigurationFormService
+    private readonly _configurationFormService: ConfigurationFormService,
+    private readonly _router: Router,
+    private readonly _store: Store<{ lawnmower: Lawnmower }>
   ) {}
 
   ngOnInit() {
@@ -83,6 +85,16 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
           );
         }
       });
+  }
+
+  proceedToOrder(event: MouseEvent) {
+    event.preventDefault();
+
+    if (this.configurationForm.valid) {
+      this._store.dispatch(storeLawnmower({ lawnmower: this.selectedModel }));
+
+      this._router.navigateByUrl('/order');
+    }
   }
 
   ngOnDestroy() {
