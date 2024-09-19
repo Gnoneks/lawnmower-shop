@@ -18,10 +18,15 @@
       </label>
       }
     </div>
-    <p-floatLabel>
-      <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
-      <label for="deliveryDate">Termin dostawy*</label>
-    </p-floatLabel>
+    <div>
+      <p-floatLabel>
+        <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
+        <label for="deliveryDate">Termin dostawy*</label>
+      </p-floatLabel>
+      @if (orderForm.controls.deliveryDate.invalid && orderForm.controls.deliveryDate.touched) {
+      <p class="form-error">Proszę wybrać termin dostawy</p>
+      }
+    </div>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
     <div>
       @for (id of recipientsIds; track $index) {

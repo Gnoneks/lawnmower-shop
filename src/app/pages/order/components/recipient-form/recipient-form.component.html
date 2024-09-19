@@ -1,35 +1,19 @@
 <form class="recipient-form" [formGroup]="recipientForm()">
+  @for (field of recipientFormData; track $index) {
   <div class="my-2">
     <p-floatLabel>
-      <input type="text" inputId="firstName" formControlName="firstName" pInputText />
-      <label for="firstName">Imię*</label>
+      @if (field.value !== 'zipCode') {
+      <input pInputText type="text" [id]="field.value" [formControlName]="field.value" />
+      }
+      @else {
+      <p-inputMask [formControlName]="field.value" mask="99-999" placeholder="99-999" />
+      }
+      <label [for]="field.value">{{field.label}}{{field.isMandatory ? '*' : ''}}</label>
+
     </p-floatLabel>
-    @if (recipientForm().controls.firstName.invalid && recipientForm().controls.firstName.touched) {
-    <p class="recipient-form__error small">Imię nie może być puste</p>
+    @if (recipientForm().get(field.value)?.invalid && recipientForm().get(field.value)?.touched) {
+    <p class="form-error">{{field.label}} jest obowiązkowym polem</p>
     }
   </div>
-  <p-floatLabel>
-    <input type="text" inputId="lastName" formControlName="lastName" pInputText />
-    <label for="lastName">Nazwisko*</label>
-  </p-floatLabel>
-  <p-floatLabel>
-    <input type="text" inputId="city" formControlName="city" pInputText />
-    <label for="city">Miasto*</label>
-  </p-floatLabel>
-  <p-floatLabel>
-    <input type="text" inputId="street" formControlName="street" pInputText />
-    <label for="street">Ulica*</label>
-  </p-floatLabel>
-  <p-floatLabel>
-    <input type="text" inputId="houseNumber" formControlName="houseNumber" pInputText />
-    <label for="houseNumber">Numer Domu*</label>
-  </p-floatLabel>
-  <p-floatLabel>
-    <input type="text" inputId="apartmentNumber" formControlName="apartmentNumber" pInputText />
-    <label for="apartmentNumber">Numer Mieszkania</label>
-  </p-floatLabel>
-  <p-floatLabel>
-    <p-inputMask formControlName="zipCode" mask="99-999" placeholder="99-999" />
-    <label for="zipCode">Kod Pocztowy*</label>
-  </p-floatLabel>
+  }
 </form>
