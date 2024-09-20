@@ -5,6 +5,8 @@ import { AsyncPipe } from '@angular/common';
 import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-details/lawnmower-details.component';
 import { Router } from '@angular/router';
 import { UserDataComponent } from './user-data/user-data/user-data.component';
+import { Lawnmower } from '../../shared/models/lawnmower.model';
+import { PurchaseData } from '../../shared/models/purchase-data.model';
 
 @Component({
   selector: 'app-summary',
@@ -14,7 +16,7 @@ import { UserDataComponent } from './user-data/user-data/user-data.component';
   styleUrl: './summary.component.scss',
 })
 export class SummaryComponent implements OnInit {
-  readonly orderData$: Observable<any>;
+  readonly orderData$: Observable<{lawnmower: Lawnmower, order: PurchaseData}>;
 
   constructor(
     private readonly _router: Router,
