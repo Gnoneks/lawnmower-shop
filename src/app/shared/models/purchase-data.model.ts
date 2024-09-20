@@ -6,7 +6,7 @@ export interface OrderDetails {
   deliveryType: DeliveryType;
   deliveryDate: Date;
   deliveryAddress: RecipientData;
-  userAddresses: RecipientData[];
+  recipients: RecipientData[];
 }
 
 export interface RecipientData {

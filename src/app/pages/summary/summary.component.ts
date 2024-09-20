@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
-import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-details/lawnmower-details.component';
+import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmower-details.component';
 import { Router } from '@angular/router';
 import { UserDataComponent } from './user-data/user-data/user-data.component';
-import { Lawnmower } from '../../shared/models/lawnmower.model';
-import { OrderDetails } from '../../shared/models/purchase-data.model';
 import { Order } from '../../shared/models/order-details.model';
 
 @Component({

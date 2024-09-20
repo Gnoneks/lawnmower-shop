@@ -29,11 +29,11 @@
     </div>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
     <div>
-      @for (id of recipientsIds; track $index) {
-      <p>{{id}}</p>
+      @for (recipientControl of orderForm.controls.recipients.controls; track $index) {
+      <p>{{recipientControl.value.id}}</p>
       <div>
-        <app-recipient-form [recipientForm]="orderForm.controls.userAddresses | getFormById : id"></app-recipient-form>
-        <button (click)="removeRecipient(id)" [disabled]="recipientsIds.length <= 1">Remove recipient</button>
+        <app-recipient-form [recipientForm]="recipientControl"></app-recipient-form>
+        <button (click)="removeRecipient(recipientControl.value.id)" [disabled]="orderForm.controls.recipients.controls.length <= 1">Remove recipient</button>
       </div>
       }
       <button (click)="addNewRecipient()">Add new recipient</button>

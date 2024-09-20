@@ -4,8 +4,8 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { RECIPIENT_FORM } from './recipient-form.data';
-import { TypedForm } from '../../../../shared/models/typed-form.model';
-import { RecipientData } from '../../../../shared/models/purchase-data.model';
+import { TypedForm } from '../../../shared/models/typed-form.model';
+import { RecipientData } from '../../../shared/models/purchase-data.model'; 
 
 @Component({
   selector: 'app-recipient-form',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { OrderService } from './order.service';
 import { PAYMENT_TYPES } from './data/payment-types.data';
 import { DELIVERY_TYPES } from './data/delivery-types.data';
@@ -6,8 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
-import { RecipientFormComponent } from './components/recipient-form/recipient-form.component';
-import { GetFormByIdPipe } from './get-form-by-id.pipe';
+import { RecipientFormComponent } from './recipient-form/recipient-form.component'; 
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
@@ -26,7 +25,6 @@ import { Order } from '../../shared/models/order-details.model';
     RadioButtonModule,
     CalendarModule,
     RecipientFormComponent,
-    GetFormByIdPipe,
     ButtonModule,
     RouterLink,
     ToastModule,
@@ -36,11 +34,8 @@ import { Order } from '../../shared/models/order-details.model';
   styleUrl: './order.component.scss',
   providers: [OrderService, provideNativeDateAdapter(), MessageService],
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent {
   readonly orderForm = this._orderService.getOrderForm();
-  readonly recipientsIds = [
-    this.orderForm.controls.userAddresses.value[0].id || 0,
-  ];
   readonly paymentTypes = PAYMENT_TYPES;
   readonly deliveryTypes = DELIVERY_TYPES;
 
@@ -52,19 +47,10 @@ export class OrderComponent implements OnInit {
   ) {}
 
   addNewRecipient() {
-    const newId = Math.floor(Math.random() * 10000);
-
-    this.recipientsIds.push(newId);
-
-    this._orderService.addNewRecipient(newId);
+    this._orderService.addNewRecipient();
   }
 
   removeRecipient(id: number) {
-    const idx = this.recipientsIds.findIndex(
-      (recipientId) => recipientId === id
-    );
-
-    this.recipientsIds.splice(idx, 1);
     this._orderService.removeRecipient(id);
   }
 
@@ -72,8 +58,12 @@ export class OrderComponent implements OnInit {
     event.preventDefault();
 
     if (this.orderForm.valid) {
-      this._store.dispatch(storeOrderDetails({ orderDetails: this.orderForm.value as OrderDetails}));
-      console.log(this.orderForm.value as OrderDetails)
+      this._store.dispatch(
+        storeOrderDetails({
+          orderDetails: this.orderForm.value as OrderDetails,
+        })
+      );
+
       this._router.navigateByUrl('/summary');
     } else {
       this.orderForm.markAllAsTouched();
@@ -85,9 +75,5 @@ export class OrderComponent implements OnInit {
         detail: 'Formularz wypełniony niepoprawnie!',
       });
     }
-  }
-
-  ngOnInit() {
-    this.orderForm.valueChanges.subscribe((v) => console.log(v));
   }
 }

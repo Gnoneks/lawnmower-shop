@@ -23,7 +23,7 @@
     </div>
     <div>
       Osoby upoważnione do używania kosiarki:
-      @for (user of orderDetails.userAddresses; track $index) {
+      @for (user of orderDetails.recipients; track $index) {
       <app-user-data [user]="user"></app-user-data>
       }
     </div>
