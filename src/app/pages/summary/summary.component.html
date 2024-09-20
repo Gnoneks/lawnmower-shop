@@ -1,11 +1,13 @@
 <section class="summary">
   <h2>Podsumowanie Zamówienia</h2>
   @if (orderData$ | async; as orderData) {
-  <div class="summary__lawnmower">
-    {{orderData.lawnmower.engine}}
-  </div>
+  @if (orderData.lawnmower; as lawnmower) {
+  <app-lawnmower-details [lawnmower]="lawnmower"></app-lawnmower-details>
+  }
+  @if (orderData.order; as order) {
   <div class="summary__order-data">
-    {{orderData.order}}
+    {{order.paymentType}}
   </div>
+  }
   }
 </section>

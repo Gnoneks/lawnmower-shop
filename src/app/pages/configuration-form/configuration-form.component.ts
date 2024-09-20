@@ -10,11 +10,12 @@ import { ButtonModule } from 'primeng/button';
 import { Store } from '@ngrx/store';
 import { storeLawnmower } from '../../store/order.actions';
 import { DropdownModule } from 'primeng/dropdown';
+import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-details/lawnmower-details.component';
 
 @Component({
   selector: 'app-configuration-form',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, ButtonModule, DropdownModule],
+  imports: [ReactiveFormsModule, RouterLink, ButtonModule, DropdownModule, LawnmowerDetailsComponent],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',
   providers: [ConfigurationFormService],
