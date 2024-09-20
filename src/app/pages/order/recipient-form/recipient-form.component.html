@@ -1,12 +1,12 @@
 <form class="recipient-form" [formGroup]="recipientForm()">
   @for (field of recipientFormData; track $index) {
-  <div class="my-2">
+  <div class="recipient-form__field">
     <p-floatLabel>
       @if (field.value !== 'zipCode') {
-      <input pInputText type="text" [id]="field.value" [formControlName]="field.value" />
+      <input class="recipient-form__input" pInputText type="text" [id]="field.value" [formControlName]="field.value" />
       }
       @else {
-      <p-inputMask [formControlName]="field.value" mask="99-999" placeholder="99-999" />
+      <p-inputMask styleClass="full-width" [formControlName]="field.value" mask="99-999" placeholder="99-999" />
       }
       <label [for]="field.value">{{field.label}}{{field.isMandatory ? '*' : ''}}</label>
 

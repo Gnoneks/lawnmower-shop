@@ -1,7 +1,25 @@
 .order {
-    // background-color: var(--surface-ground);
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+    padding: 16px;
+    margin: auto;
 
     &__form {
-    background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__columns {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__radio-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
     }
 }

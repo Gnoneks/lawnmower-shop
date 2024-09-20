@@ -1,10 +1,7 @@
-@use "../../shared/media-queries.scss";
-
 .configuration {
     display: flex;
     flex-direction: column;
     max-width: 720px;
-
     padding: 16px;
     margin: auto;
     gap: 32px;
@@ -28,5 +25,3 @@
         color: var(--primary-color-text);
     }
 }
-
-@media (min-width: media-queries.$tablet-up) {}

@@ -1,22 +1,32 @@
 <section class="order">
-  <form class="card flex justify-content-center order__form" [formGroup]="orderForm">
-    <div class="flex align-items-center">
-      Rodzaj Płatności*
-      @for (paymentType of paymentTypes; track $index) {
-      <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
-      <label [for]="paymentType.value">
-        {{paymentType.label}}
-      </label>
-      }
-    </div>
-    <div class="flex align-items-center">
-      Typ Dostawy*
-      @for (deliveryType of deliveryTypes; track $index) {
-      <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
-      <label [for]="deliveryType.value">
-        {{deliveryType.label}}
-      </label>
-      }
+  <form class="order__form" [formGroup]="orderForm">
+    <div class="order__columns">
+      <div class="order__radio-group">
+        <span>
+          Rodzaj Płatności*
+        </span>
+        @for (paymentType of paymentTypes; track $index) {
+        <div>
+          <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
+          <label [for]="paymentType.value">
+            {{paymentType.label}}
+          </label>
+        </div>
+        }
+      </div>
+      <div class="order__radio-group">
+        <span>
+          Typ Dostawy*
+        </span>
+        @for (deliveryType of deliveryTypes; track $index) {
+        <div>
+          <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
+          <label [for]="deliveryType.value">
+            {{deliveryType.label}}
+          </label>
+        </div>
+        }
+      </div>
     </div>
     <div>
       <p-floatLabel>
