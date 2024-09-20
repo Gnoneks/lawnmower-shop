@@ -6,7 +6,8 @@ import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-det
 import { Router } from '@angular/router';
 import { UserDataComponent } from './user-data/user-data/user-data.component';
 import { Lawnmower } from '../../shared/models/lawnmower.model';
-import { PurchaseData } from '../../shared/models/purchase-data.model';
+import { OrderDetails } from '../../shared/models/purchase-data.model';
+import { Order } from '../../shared/models/order-details.model';
 
 @Component({
   selector: 'app-summary',
@@ -16,11 +17,11 @@ import { PurchaseData } from '../../shared/models/purchase-data.model';
   styleUrl: './summary.component.scss',
 })
 export class SummaryComponent implements OnInit {
-  readonly orderData$: Observable<{lawnmower: Lawnmower, order: PurchaseData}>;
+  readonly orderData$: Observable<Order>;
 
   constructor(
     private readonly _router: Router,
-    private readonly _store: Store<{ orderData: any }>
+    private readonly _store: Store<{ orderData: Order }>
   ) {
     this.orderData$ = _store.select('orderData');
   }
@@ -28,8 +29,8 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.orderData$.subscribe((v) => {
       //TODO
-      console.log('v.order', v.order);
-      if (!v.lawnmower && !v.order) {
+      console.log('v.order', v.orderDetails);
+      if (!v.lawnmower && !v.orderDetails) {
         this._router.navigateByUrl('/');
       }
     });

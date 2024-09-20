@@ -1,7 +1,7 @@
 import { DeliveryType } from '../../pages/order/models/delivery-type.enum';
 import { PaymentType } from '../../pages/order/models/payment-type.enum';
 
-export interface PurchaseData {
+export interface OrderDetails {
   paymentType: PaymentType;
   deliveryType: DeliveryType;
   deliveryDate: Date;

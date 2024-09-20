@@ -1,8 +1,8 @@
 import { Lawnmower } from './lawnmower.model';
-import { PurchaseData } from './purchase-data.model';
+import { OrderDetails } from './purchase-data.model';
 
-export interface OrderDetails {
+export interface Order {
   lawnmower: Lawnmower;
-  purchaseData: PurchaseData;
+  orderDetails: OrderDetails;
 }
 

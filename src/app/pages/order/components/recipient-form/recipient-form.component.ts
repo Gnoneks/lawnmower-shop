@@ -2,9 +2,10 @@ import { Component, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
-import { RecipientForm } from '../../models/order-form.model';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { RECIPIENT_FORM } from './recipient-form.data';
+import { TypedForm } from '../../../../shared/models/typed-form.model';
+import { RecipientData } from '../../../../shared/models/purchase-data.model';
 
 @Component({
   selector: 'app-recipient-form',
@@ -19,7 +20,7 @@ import { RECIPIENT_FORM } from './recipient-form.data';
   styleUrl: './recipient-form.component.scss',
 })
 export class RecipientFormComponent {
-  recipientForm = input.required<FormGroup<RecipientForm>>();
+  recipientForm = input.required<FormGroup<TypedForm<RecipientData>>>();
 
   readonly recipientFormData = RECIPIENT_FORM;
 }

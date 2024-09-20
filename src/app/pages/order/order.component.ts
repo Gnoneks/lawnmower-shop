@@ -15,6 +15,8 @@ import { MessageService } from 'primeng/api';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { Store } from '@ngrx/store';
 import { storeOrderDetails } from '../../store/order.actions';
+import { OrderDetails } from '../../shared/models/purchase-data.model';
+import { Order } from '../../shared/models/order-details.model';
 
 @Component({
   selector: 'app-order',
@@ -46,7 +48,7 @@ export class OrderComponent implements OnInit {
     private readonly _orderService: OrderService,
     private readonly _router: Router,
     private readonly _messageService: MessageService,
-    private readonly _store: Store<{ orderData: any }>
+    private readonly _store: Store<{ orderData: Order }>
   ) {}
 
   addNewRecipient() {
@@ -70,8 +72,8 @@ export class OrderComponent implements OnInit {
     event.preventDefault();
 
     if (this.orderForm.valid) {
-      this._store.dispatch(storeOrderDetails({ order: this.orderForm.value }));
-
+      this._store.dispatch(storeOrderDetails({ orderDetails: this.orderForm.value as OrderDetails}));
+      console.log(this.orderForm.value as OrderDetails)
       this._router.navigateByUrl('/summary');
     } else {
       this.orderForm.markAllAsTouched();
