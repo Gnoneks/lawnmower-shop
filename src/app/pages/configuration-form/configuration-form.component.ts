@@ -5,7 +5,7 @@ import { ConfigurationFormService } from './configuration-form.service';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-details/lawnmower-details.component';
+import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmower-details.component';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

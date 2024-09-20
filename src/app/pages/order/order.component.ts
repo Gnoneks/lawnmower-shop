@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
-import { RecipientFormComponent } from './components/recipient-form/recipient-form.component';
+import { RecipientFormComponent } from './recipient-form/recipient-form.component'; 
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
