@@ -28,7 +28,7 @@ export class ConfigurationFormComponent implements OnInit {
     this._configurationFormService.getConfigurationForm();
   readonly brands$ = this._configurationFormService.getBrands();
   readonly models$ = this._configurationFormService.getModels();
-  readonly selectedModel$ = this._configurationFormService.getSelectedModel();
+  readonly selectedLawnmower$ = this._configurationFormService.getSelectedLawnmower();
 
   readonly engineTypes = Engine;
   readonly engines = Object.values(Engine);
@@ -39,6 +39,7 @@ export class ConfigurationFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this._configurationFormService.getFormDataFromStore();
     this._configurationFormService.listenToFormChange();
   }
 

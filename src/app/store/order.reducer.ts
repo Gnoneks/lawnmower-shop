@@ -14,8 +14,6 @@ export const initialState: {
 export const orderReducer = createReducer(
   initialState,
   on(storeLawnmower, (state, { lawnmower }) => {
-    console.log('lawnmower', lawnmower);
-
     return {
       ...state,
       lawnmower,
