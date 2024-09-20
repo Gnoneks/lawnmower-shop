@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
 import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmower-details.component';
@@ -25,12 +25,9 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orderData$.subscribe((v) => {
-      //TODO
-      console.log('v.order', v.orderDetails);
-      if (!v.lawnmower && !v.orderDetails) {
-        this._router.navigateByUrl('/');
-      }
-    });
+    this.orderData$
+      .pipe(take(1))
+      .subscribe(({ orderDetails }) => !orderDetails) &&
+      this._router.navigateByUrl('/');
   }
 }
