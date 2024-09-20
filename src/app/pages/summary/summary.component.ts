@@ -27,7 +27,8 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.orderData$
       .pipe(take(1))
-      .subscribe(({ orderDetails }) => !orderDetails) &&
-      this._router.navigateByUrl('/');
+      .subscribe(
+        ({ orderDetails }) => !orderDetails && this._router.navigateByUrl('/')
+      );
   }
 }
