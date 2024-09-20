@@ -1,38 +1,49 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { OrderForm, RecipientForm } from './models/order-form.model';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { DeliveryType } from './models/delivery-type.enum';
 import { PaymentType } from './models/payment-type.enum';
+import {
+  OrderDetails,
+  RecipientData,
+} from '../../shared/models/purchase-data.model';
+import { TypedForm } from '../../shared/models/typed-form.model';
 
 @Injectable()
 export class OrderService {
   private readonly _orderForm = this.initOrderForm();
 
-  constructor() {}
+  constructor(private readonly _fb: FormBuilder) {}
 
   getOrderForm() {
     return this._orderForm;
   }
 
-  initOrderForm(): FormGroup<OrderForm> {
-    return new FormGroup<OrderForm>({
-      paymentType: new FormControl(PaymentType.CARD, Validators.required),
-      deliveryType: new FormControl(DeliveryType.COURIER, Validators.required),
-      deliveryDate: new FormControl(null, Validators.required),
+  initOrderForm(): FormGroup<TypedForm<OrderDetails>> {
+    return this._fb.group<TypedForm<OrderDetails>>({
+      paymentType: [PaymentType.CARD, Validators.required],
+      deliveryType: [DeliveryType.COURIER, Validators.required],
+      deliveryDate: [null, Validators.required],
       deliveryAddress: this._createRecipientForm(),
-      userAddresses: new FormArray([this._createRecipientForm(Math.floor(Math.random() * 10000))]),
+      userAddresses: this._fb.array([
+        this._createRecipientForm(Math.floor(Math.random() * 10000)),
+      ]),
     });
   }
 
   private _createRecipientForm(newId?: number) {
-    const recipientForm = new FormGroup<RecipientForm>({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      city: new FormControl('', Validators.required),
-      street: new FormControl('', Validators.required),
-      houseNumber: new FormControl('', Validators.required),
-      apartmentNumber: new FormControl(''),
-      zipCode: new FormControl('', Validators.required),
+    const recipientForm = this._fb.group<TypedForm<RecipientData>>({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      city: ['', Validators.required],
+      street: ['', Validators.required],
+      houseNumber: ['', Validators.required],
+      apartmentNumber: [''],
+      zipCode: ['', Validators.required],
     });
 
     if (newId)
@@ -52,7 +63,9 @@ export class OrderService {
 
   removeRecipient(id: number) {
     const userAddresses = this._orderForm.controls.userAddresses;
-    const idx = userAddresses.value.findIndex((value) => value.id === id);
+    const idx = userAddresses.value.findIndex(
+      (value: RecipientData) => value.id === id
+    );
 
     userAddresses.removeAt(idx);
   }

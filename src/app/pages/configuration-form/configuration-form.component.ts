@@ -23,7 +23,7 @@ import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-det
 export class ConfigurationFormComponent implements OnInit, OnDestroy {
   brands: string[] = [];
   models: string[] = [];
-  selectedModel?: Lawnmower;
+  selectedModel: Lawnmower;
 
   readonly lawnmowers = LAWNMOWNERS;
   readonly configurationForm = this._configurationFormService.initForm();
@@ -83,7 +83,7 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
               lm.engine === next?.engine &&
               lm.brand === next?.brand &&
               lm.model === next?.model
-          );
+          )!;
         }
       });
   }

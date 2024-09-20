@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { RecipientForm } from './models/order-form.model';
+import { TypedForm } from '../../shared/models/typed-form.model';
+import { RecipientData } from '../../shared/models/purchase-data.model';
 
 @Pipe({
   name: 'getFormById',
@@ -8,9 +9,9 @@ import { RecipientForm } from './models/order-form.model';
 })
 export class GetFormByIdPipe implements PipeTransform {
   transform(
-    formArray: FormArray<FormGroup<RecipientForm>>,
+    formArray: FormArray<FormGroup<TypedForm<RecipientData>>>,
     id: number
-  ): FormGroup<RecipientForm> {
+  ): FormGroup<TypedForm<RecipientData>> {
     return formArray.controls.find((control) => control.value.id === id)!;
   }
 }

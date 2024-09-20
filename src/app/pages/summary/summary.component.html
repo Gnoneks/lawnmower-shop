@@ -4,27 +4,26 @@
   @if (orderData.lawnmower; as lawnmower) {
   <app-lawnmower-details [lawnmower]="lawnmower"></app-lawnmower-details>
   }
-  @if (orderData.order; as order) {
-  <div class="summary__order-data">
+  @if (orderData.orderDetails; as orderDetails) {
+  <div class="summary__orderDetails-data">
     <div>
-
-      Rodzaj płatności: {{order.paymentType}}
+      Rodzaj płatności: {{orderDetails.paymentType}}
     </div>
     <div>
 
-      Rodzaj dostawy: {{order.deliveryType}}
+      Rodzaj dostawy: {{orderDetails.deliveryType}}
     </div>
     <div>
 
-      Data i godzina dostawy: {{order.deliveryDate}}
+      Data i godzina dostawy: {{orderDetails.deliveryDate}}
     </div>
     <div>
       Adres dostawy:
-      <app-user-data [user]="order.deliveryAddress"></app-user-data>
+      <app-user-data [user]="orderDetails.deliveryAddress"></app-user-data>
     </div>
     <div>
       Osoby upoważnione do używania kosiarki:
-      @for (user of order.userAddresses; track $index) {
+      @for (user of orderDetails.userAddresses; track $index) {
       <app-user-data [user]="user"></app-user-data>
       }
     </div>

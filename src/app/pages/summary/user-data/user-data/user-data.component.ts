@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { RecipientData } from '../../../../shared/models/purchase-data.model';
 
 @Component({
   selector: 'app-user-data',
@@ -8,6 +9,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './user-data.component.scss'
 })
 export class UserDataComponent {
-  //TODO type
-  user = input.required<any>()
+  user = input.required<RecipientData>()
 }
