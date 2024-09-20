@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { Lawnmower } from '../../models/lawnmower.model';
-import { Engine } from '../../models/engine.enum';
+import { Lawnmower } from '../models/lawnmower.model';
+import { Engine } from '../models/engine.enum';
 
 @Component({
   selector: 'app-lawnmower-details',
