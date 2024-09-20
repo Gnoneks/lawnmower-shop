@@ -1,0 +1,11 @@
+<div>
+  <p>Imię: {{user().firstName}}</p>
+  <p>Nazwisko: {{user().lastName}}</p>
+  <p>Miasto: {{user().city}}</p>
+  <p>Ulica: {{user().street}}</p>
+  <p>Numer domu: {{user().houseNumber}}</p>
+  @if (user().apartmentNumber) {
+  <p>Numer mieszkania: {{user().apartmentNumber}}</p>
+  }
+  <p>Kod pocztowy: {{user().zipCode}}</p>
+</div>

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { PAYMENT_TYPES } from './data/payment-types.data';
 import { DELIVERY_TYPES } from './data/delivery-types.data';
@@ -13,6 +13,8 @@ import { Router, RouterLink } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { Store } from '@ngrx/store';
+import { storeOrderDetails } from '../../store/order.actions';
 
 @Component({
   selector: 'app-order',
@@ -44,7 +46,7 @@ export class OrderComponent implements OnInit {
     private readonly _orderService: OrderService,
     private readonly _router: Router,
     private readonly _messageService: MessageService,
-    private readonly _cdRef: ChangeDetectorRef
+    private readonly _store: Store<{ orderData: any }>
   ) {}
 
   addNewRecipient() {
@@ -66,25 +68,21 @@ export class OrderComponent implements OnInit {
 
   goToSummary(event: MouseEvent) {
     event.preventDefault();
-    // console.log(
-    //   this.orderForm.controls.deliveryAddress.controls.firstName.errors
-    // );
-    // if (this.orderForm.valid) {
+
+    if (this.orderForm.valid) {
+      this._store.dispatch(storeOrderDetails({ order: this.orderForm.value }));
+
       this._router.navigateByUrl('/summary');
-    // } else {
-    //   this.orderForm.markAllAsTouched();
-    //   this.orderForm.updateValueAndValidity();
+    } else {
+      this.orderForm.markAllAsTouched();
+      this.orderForm.updateValueAndValidity();
 
-    //   this._messageService.add({
-    //     severity: 'error',
-    //     summary: 'Error',
-    //     detail: 'Formularz wypełniony niepoprawnie!',
-    //   });
-
-    //   this._cdRef.detectChanges();
-    // }
-
-    //TODO Save data to global service
+      this._messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Formularz wypełniony niepoprawnie!',
+      });
+    }
   }
 
   ngOnInit() {

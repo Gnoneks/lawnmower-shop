@@ -6,7 +6,28 @@
   }
   @if (orderData.order; as order) {
   <div class="summary__order-data">
-    {{order.paymentType}}
+    <div>
+
+      Rodzaj płatności: {{order.paymentType}}
+    </div>
+    <div>
+
+      Rodzaj dostawy: {{order.deliveryType}}
+    </div>
+    <div>
+
+      Data i godzina dostawy: {{order.deliveryDate}}
+    </div>
+    <div>
+      Adres dostawy:
+      <app-user-data [user]="order.deliveryAddress"></app-user-data>
+    </div>
+    <div>
+      Osoby upoważnione do używania kosiarki:
+      @for (user of order.userAddresses; track $index) {
+      <app-user-data [user]="user"></app-user-data>
+      }
+    </div>
   </div>
   }
   }
