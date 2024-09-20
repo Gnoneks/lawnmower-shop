@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Engine } from '../../shared/models/engine.enum';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfigurationFormService } from './configuration-form.service';
@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmower-details.component';
 import { AsyncPipe } from '@angular/common';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-configuration-form',
@@ -21,17 +22,19 @@ import { AsyncPipe } from '@angular/common';
   ],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',
-  providers: [ConfigurationFormService],
 })
-export class ConfigurationFormComponent implements OnInit {
+export class ConfigurationFormComponent implements OnInit, OnDestroy {
   readonly configurationForm =
     this._configurationFormService.getConfigurationForm();
   readonly brands$ = this._configurationFormService.getBrands();
   readonly models$ = this._configurationFormService.getModels();
-  readonly selectedLawnmower$ = this._configurationFormService.getSelectedLawnmower();
+  readonly selectedLawnmower$ =
+    this._configurationFormService.getSelectedLawnmower();
 
   readonly engineTypes = Engine;
   readonly engines = Object.values(Engine);
+
+  private _subscription: Subscription;
 
   constructor(
     private readonly _configurationFormService: ConfigurationFormService,
@@ -39,8 +42,7 @@ export class ConfigurationFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._configurationFormService.getFormDataFromStore();
-    this._configurationFormService.listenToFormChange();
+    this._subscription = this._configurationFormService.listenToFormChange();
   }
 
   proceedToOrder(event: MouseEvent) {
@@ -51,5 +53,9 @@ export class ConfigurationFormComponent implements OnInit {
 
       this._router.navigateByUrl('/order');
     }
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 }

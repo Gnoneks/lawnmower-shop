@@ -32,7 +32,7 @@ import { Order } from '../../shared/models/order-details.model';
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
-  providers: [OrderService, provideNativeDateAdapter(), MessageService],
+  providers: [provideNativeDateAdapter(), MessageService],
 })
 export class OrderComponent {
   readonly orderForm = this._orderService.getOrderForm();

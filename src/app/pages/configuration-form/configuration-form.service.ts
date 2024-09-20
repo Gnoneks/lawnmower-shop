@@ -18,9 +18,8 @@ import { TypedForm } from '../../shared/models/typed-form.model';
 import { Engine } from '../../shared/models/engine.enum';
 import { Order } from '../../shared/models/order-details.model';
 
-@Injectable()
-export class ConfigurationFormService implements OnDestroy {
-  private readonly _orderData$: Observable<Order>;
+@Injectable({ providedIn: 'root' })
+export class ConfigurationFormService {
   private readonly _brands$ = new BehaviorSubject<string[]>([]);
   private readonly _models$ = new BehaviorSubject<string[]>([]);
   private readonly _selectedLawnmower$ = new BehaviorSubject<Lawnmower | null>(
@@ -29,14 +28,11 @@ export class ConfigurationFormService implements OnDestroy {
 
   private readonly _lawnmowers = LAWNMOWNERS;
   private readonly _configurationForm = this._initConfigurationForm();
-  private readonly _destroy$ = new Subject<void>();
 
   constructor(
     private readonly _fb: NonNullableFormBuilder,
     private readonly _store: Store<{ orderData: Order }>
-  ) {
-    this._orderData$ = _store.select('orderData');
-  }
+  ) {}
 
   getBrands() {
     return this._brands$.asObservable();
@@ -62,34 +58,9 @@ export class ConfigurationFormService implements OnDestroy {
     });
   }
 
-  getFormDataFromStore() {
-    this._orderData$
-      .pipe(
-        filter((data) => !!data.lawnmower),
-        takeUntil(this._destroy$)
-      )
-      .subscribe(({ lawnmower }) => {
-        const { brand, model } = this._configurationForm.controls;
-
-        this._configurationForm.patchValue(lawnmower, { emitEvent: false });
-
-        brand.enable({ emitEvent: false });
-        model.enable({ emitEvent: false });
-
-        this._updateBrands(lawnmower.engine);
-        this._updateModels(lawnmower.engine, lawnmower.brand);
-
-        this._selectedLawnmower$.next(lawnmower);
-      });
-  }
-
   listenToFormChange() {
-    this._configurationForm.valueChanges
-      .pipe(
-        startWith(this._configurationForm.value),
-        pairwise(),
-        takeUntil(this._destroy$)
-      )
+    return this._configurationForm.valueChanges
+      .pipe(startWith(this._configurationForm.value), pairwise())
       .subscribe(([prev, next]) => {
         const { brand, model } = this._configurationForm.controls;
         const {
@@ -151,10 +122,5 @@ export class ConfigurationFormService implements OnDestroy {
     if (lawnmower) {
       this._store.dispatch(storeLawnmower({ lawnmower }));
     }
-  }
-
-  ngOnDestroy() {
-    this._destroy$.next();
-    this._destroy$.complete();
   }
 }
