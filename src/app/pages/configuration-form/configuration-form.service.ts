@@ -1,29 +1,37 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ConfigurationForm } from './configuration-form.model';
-import { BehaviorSubject, pairwise, startWith, Subject, takeUntil } from 'rxjs';
+import {
+  BehaviorSubject,
+  filter,
+  Observable,
+  pairwise,
+  startWith,
+  Subject,
+  takeUntil,
+} from 'rxjs';
 import { LAWNMOWNERS } from '../../lawnmowers.data';
 import { Lawnmower } from '../../shared/models/lawnmower.model';
 import { Store } from '@ngrx/store';
 import { storeLawnmower } from '../../store/order.actions';
 import { TypedForm } from '../../shared/models/typed-form.model';
 import { Engine } from '../../shared/models/engine.enum';
+import { Order } from '../../shared/models/order-details.model';
 
-@Injectable()
-export class ConfigurationFormService implements OnDestroy {
+@Injectable({ providedIn: 'root' })
+export class ConfigurationFormService {
   private readonly _brands$ = new BehaviorSubject<string[]>([]);
   private readonly _models$ = new BehaviorSubject<string[]>([]);
-  private readonly _selectedModel$ = new BehaviorSubject<Lawnmower | null>(
+  private readonly _selectedLawnmower$ = new BehaviorSubject<Lawnmower | null>(
     null
   );
 
   private readonly _lawnmowers = LAWNMOWNERS;
   private readonly _configurationForm = this._initConfigurationForm();
-  private readonly _destroy$ = new Subject<void>();
 
   constructor(
     private readonly _fb: NonNullableFormBuilder,
-    private readonly _store: Store<{ lawnmower: Lawnmower }>
+    private readonly _store: Store<{ orderData: Order }>
   ) {}
 
   getBrands() {
@@ -34,8 +42,8 @@ export class ConfigurationFormService implements OnDestroy {
     return this._models$.asObservable();
   }
 
-  getSelectedModel() {
-    return this._selectedModel$.asObservable();
+  getSelectedLawnmower() {
+    return this._selectedLawnmower$.asObservable();
   }
 
   getConfigurationForm() {
@@ -51,12 +59,8 @@ export class ConfigurationFormService implements OnDestroy {
   }
 
   listenToFormChange() {
-    this._configurationForm.valueChanges
-      .pipe(
-        startWith({ engine: null, brand: null, model: null }),
-        pairwise(),
-        takeUntil(this._destroy$)
-      )
+    return this._configurationForm.valueChanges
+      .pipe(startWith(this._configurationForm.value), pairwise())
       .subscribe(([prev, next]) => {
         const { brand, model } = this._configurationForm.controls;
         const {
@@ -66,31 +70,31 @@ export class ConfigurationFormService implements OnDestroy {
         } = next;
 
         if (prev.engine !== selectedEngine) {
-          brand.disabled && brand.enable({ emitEvent: false });
+          brand.enable({ emitEvent: false });
           brand.reset();
 
-          model.enabled && model.disable({ emitEvent: false });
+          model.disable({ emitEvent: false });
           model.reset();
 
           this._updateBrands(selectedEngine);
         }
 
         if (prev.brand !== selectedBrand) {
-          model.disabled && model.enable({ emitEvent: false });
+          model.enable({ emitEvent: false });
           model.reset();
 
           this._updateModels(selectedEngine, selectedBrand);
         }
 
         if (prev.model !== selectedModel) {
-          this._selectedModel$.next(
-            this._lawnmowers.find(
-              (lm) =>
-                lm.engine === selectedEngine &&
-                lm.brand === selectedBrand &&
-                lm.model === selectedModel
-            )!
-          );
+          const selectedLawnmower = this._lawnmowers.find(
+            ({ engine, brand, model }) =>
+              engine === selectedEngine &&
+              brand === selectedBrand &&
+              model === selectedModel
+          )!;
+
+          this._selectedLawnmower$.next(selectedLawnmower);
         }
       });
   }
@@ -113,15 +117,10 @@ export class ConfigurationFormService implements OnDestroy {
   }
 
   storeLawnmower() {
-    const lawnmower = this._selectedModel$.getValue();
+    const lawnmower = this._selectedLawnmower$.getValue();
 
     if (lawnmower) {
       this._store.dispatch(storeLawnmower({ lawnmower }));
     }
-  }
-
-  ngOnDestroy() {
-    this._destroy$.next();
-    this._destroy$.complete();
   }
 }

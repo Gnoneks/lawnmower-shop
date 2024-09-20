@@ -10,8 +10,8 @@
   </form>
   <hr />
 </section>
-@if (selectedModel$ | async; as selectedModel) {
-<app-lawnmower-details [lawnmower]="selectedModel"></app-lawnmower-details>
+@if (selectedLawnmower$ | async; as selectedLawnmower) {
+<app-lawnmower-details [lawnmower]="selectedLawnmower"></app-lawnmower-details>
 }
 
 <a class="configuration__button p-button" href="/order" (click)="proceedToOrder($event)">Proceed to order</a>

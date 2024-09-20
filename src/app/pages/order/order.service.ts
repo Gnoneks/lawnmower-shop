@@ -13,7 +13,7 @@ import {
 } from '../../shared/models/purchase-data.model';
 import { TypedForm } from '../../shared/models/typed-form.model';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class OrderService {
   private readonly _orderForm = this.initOrderForm();
 
