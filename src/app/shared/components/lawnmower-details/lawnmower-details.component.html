@@ -1,0 +1,38 @@
+<section class="lawnmower">
+  <h3 class="lawnmower__name">{{lawnmower().brand}} {{lawnmower().model}}</h3>
+  @switch (lawnmower().engine ) {
+  @case (engineTypes.ACCUMULATOR) {
+  <div class="lawnmower__property">
+    Ilość akumulatorów: {{lawnmower().accumulatorAmount}}
+  </div>
+  <div class="lawnmower__property">
+    Pojemność akumulatora: {{lawnmower().accumulatorCapacity}}Ah
+  </div>
+  <div class="lawnmower__property">
+    Kolor: {{lawnmower().color}}
+  </div>
+  }
+  @case (engineTypes.COMBUSTION) {
+  <div class="lawnmower__property">
+    Pojemność skokowa silnika: {{lawnmower().engineDisplacement}}cm3
+  </div>
+  <div class="lawnmower__property">
+    Pojemność baku: {{lawnmower().tankCapacity}}L
+  </div>
+  <div class="lawnmower__property">
+    Ilość poziomów koszenia: {{lawnmower().engineDisplacement}}
+  </div>
+  }
+  @case (engineTypes.ELECTRIC) {
+  <div class="lawnmower__property">
+    Długość kabla: {{lawnmower().cableLength}}m
+  </div>
+  <div class="lawnmower__property">
+    Ilość ostrzy: {{lawnmower().bladesAmount}}
+  </div>
+  <div class="lawnmower__property">
+    Kolor: {{lawnmower().color}}
+  </div>
+  }
+  }
+</section>

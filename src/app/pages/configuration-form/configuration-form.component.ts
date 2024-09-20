@@ -1,18 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatSelectModule } from '@angular/material/select';
 import { Engine } from '../../shared/models/engine.enum';
 import { LAWNMOWNERS } from '../../lawnmowers.data';
 import { ReactiveFormsModule } from '@angular/forms';
 import { pairwise, startWith, Subject, takeUntil } from 'rxjs';
 import { ConfigurationFormService } from './configuration-form.service';
 import { Lawnmower } from '../../shared/models/lawnmower.model';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { Store } from '@ngrx/store';
+import { storeLawnmower } from '../../store/order.actions';
+import { DropdownModule } from 'primeng/dropdown';
+import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-details/lawnmower-details.component';
 
 @Component({
   selector: 'app-configuration-form',
   standalone: true,
-  imports: [MatSelectModule, ReactiveFormsModule, MatButtonModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, ButtonModule, DropdownModule, LawnmowerDetailsComponent],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',
   providers: [ConfigurationFormService],
@@ -30,7 +33,9 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
   private readonly _destroy$ = new Subject<void>();
 
   constructor(
-    private readonly _configurationFormService: ConfigurationFormService
+    private readonly _configurationFormService: ConfigurationFormService,
+    private readonly _router: Router,
+    private readonly _store: Store<{ lawnmower: Lawnmower }>
   ) {}
 
   ngOnInit() {
@@ -81,6 +86,16 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
           );
         }
       });
+  }
+
+  proceedToOrder(event: MouseEvent) {
+    event.preventDefault();
+
+    if (this.configurationForm.valid) {
+      this._store.dispatch(storeLawnmower({ lawnmower: this.selectedModel }));
+
+      this._router.navigateByUrl('/order');
+    }
   }
 
   ngOnDestroy() {

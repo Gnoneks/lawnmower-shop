@@ -1,1 +1,34 @@
-<p>SUMMARY</p>
+<section class="summary">
+  <h2>Podsumowanie Zamówienia</h2>
+  @if (orderData$ | async; as orderData) {
+  @if (orderData.lawnmower; as lawnmower) {
+  <app-lawnmower-details [lawnmower]="lawnmower"></app-lawnmower-details>
+  }
+  @if (orderData.order; as order) {
+  <div class="summary__order-data">
+    <div>
+
+      Rodzaj płatności: {{order.paymentType}}
+    </div>
+    <div>
+
+      Rodzaj dostawy: {{order.deliveryType}}
+    </div>
+    <div>
+
+      Data i godzina dostawy: {{order.deliveryDate}}
+    </div>
+    <div>
+      Adres dostawy:
+      <app-user-data [user]="order.deliveryAddress"></app-user-data>
+    </div>
+    <div>
+      Osoby upoważnione do używania kosiarki:
+      @for (user of order.userAddresses; track $index) {
+      <app-user-data [user]="user"></app-user-data>
+      }
+    </div>
+  </div>
+  }
+  }
+</section>

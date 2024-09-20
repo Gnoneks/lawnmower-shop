@@ -1,5 +1,5 @@
 export enum Engine {
-  COMBUSTION = 'Combustion',
-  ELECTRIC = 'Electric',
-  ACCUMULATOR = 'Accumulator',
+  COMBUSTION = 'Spalinowy',
+  ELECTRIC = 'Elektryczny',
+  ACCUMULATOR = 'Akumulator',
 }
