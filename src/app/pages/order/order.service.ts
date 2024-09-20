@@ -29,7 +29,7 @@ export class OrderService {
       deliveryType: [DeliveryType.COURIER, Validators.required],
       deliveryDate: [null, Validators.required],
       deliveryAddress: this._createRecipientForm(),
-      userAddresses: this._fb.array([
+      recipients: this._fb.array([
         this._createRecipientForm(Math.floor(Math.random() * 10000)),
       ]),
     });
@@ -55,18 +55,20 @@ export class OrderService {
     return recipientForm;
   }
 
-  addNewRecipient(newId: number) {
-    this._orderForm.controls.userAddresses.push(
+  addNewRecipient() {
+    const newId = Math.floor(Math.random() * 10000);
+
+    this._orderForm.controls.recipients.push(
       this._createRecipientForm(newId)
     );
   }
 
   removeRecipient(id: number) {
-    const userAddresses = this._orderForm.controls.userAddresses;
-    const idx = userAddresses.value.findIndex(
+    const recipients = this._orderForm.controls.recipients;
+    const idx = recipients.value.findIndex(
       (value: RecipientData) => value.id === id
     );
 
-    userAddresses.removeAt(idx);
+    recipients.removeAt(idx);
   }
 }
