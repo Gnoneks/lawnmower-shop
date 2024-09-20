@@ -1,105 +1,54 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Engine } from '../../shared/models/engine.enum';
-import { LAWNMOWNERS } from '../../lawnmowers.data';
 import { ReactiveFormsModule } from '@angular/forms';
-import { pairwise, startWith, Subject, takeUntil } from 'rxjs';
 import { ConfigurationFormService } from './configuration-form.service';
-import { Lawnmower } from '../../shared/models/lawnmower.model';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { Store } from '@ngrx/store';
-import { storeLawnmower } from '../../store/order.actions';
 import { DropdownModule } from 'primeng/dropdown';
 import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-details/lawnmower-details.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-configuration-form',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, ButtonModule, DropdownModule, LawnmowerDetailsComponent],
+  imports: [
+    AsyncPipe,
+    ReactiveFormsModule,
+    RouterLink,
+    ButtonModule,
+    DropdownModule,
+    LawnmowerDetailsComponent,
+  ],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',
   providers: [ConfigurationFormService],
 })
-export class ConfigurationFormComponent implements OnInit, OnDestroy {
-  brands: string[] = [];
-  models: string[] = [];
-  selectedModel: Lawnmower;
+export class ConfigurationFormComponent implements OnInit {
+  readonly configurationForm =
+    this._configurationFormService.getConfigurationForm();
+  readonly brands$ = this._configurationFormService.getBrands();
+  readonly models$ = this._configurationFormService.getModels();
+  readonly selectedModel$ = this._configurationFormService.getSelectedModel();
 
-  readonly lawnmowers = LAWNMOWNERS;
-  readonly configurationForm = this._configurationFormService.initForm();
   readonly engineTypes = Engine;
   readonly engines = Object.values(Engine);
 
-  private readonly _destroy$ = new Subject<void>();
-
   constructor(
     private readonly _configurationFormService: ConfigurationFormService,
-    private readonly _router: Router,
-    private readonly _store: Store<{ lawnmower: Lawnmower }>
+    private readonly _router: Router
   ) {}
 
   ngOnInit() {
-    this._listenToEngineChange();
-  }
-
-  private _listenToEngineChange() {
-    this.configurationForm.valueChanges
-      .pipe(startWith(null), pairwise(), takeUntil(this._destroy$))
-      .subscribe(([prev, next]) => {
-        const { engine, brand, model } = this.configurationForm.controls;
-        const selectedEngine = next?.engine;
-
-        if (prev?.engine !== selectedEngine) {
-          brand.disabled && brand.enable({ emitEvent: false });
-          brand.reset();
-
-          model.enabled && model.disable({ emitEvent: false });
-          model.reset();
-
-          const filteredLawnmowers = this.lawnmowers.filter(
-            ({ engine }) => engine === selectedEngine
-          );
-
-          this.brands = [...new Set(filteredLawnmowers.map((lm) => lm.brand))];
-        }
-
-        if (prev?.brand !== next?.brand) {
-          const selectedBrand = next?.brand;
-
-          model.disabled && model.enable({ emitEvent: false });
-          model.reset();
-
-          const filteredLawnmowers = this.lawnmowers.filter(
-            ({ brand, engine }) =>
-              brand === selectedBrand && engine === selectedEngine
-          );
-
-          this.models = filteredLawnmowers.map((lm) => lm.model);
-        }
-
-        if (prev?.model !== next?.model) {
-          this.selectedModel = this.lawnmowers.find(
-            (lm) =>
-              lm.engine === next?.engine &&
-              lm.brand === next?.brand &&
-              lm.model === next?.model
-          )!;
-        }
-      });
+    this._configurationFormService.listenToFormChange();
   }
 
   proceedToOrder(event: MouseEvent) {
     event.preventDefault();
 
     if (this.configurationForm.valid) {
-      this._store.dispatch(storeLawnmower({ lawnmower: this.selectedModel }));
+      this._configurationFormService.storeLawnmower();
 
       this._router.navigateByUrl('/order');
     }
-  }
-
-  ngOnDestroy() {
-    this._destroy$.next();
-    this._destroy$.complete();
   }
 }

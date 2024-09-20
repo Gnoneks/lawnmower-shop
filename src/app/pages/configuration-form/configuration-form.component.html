@@ -1,12 +1,16 @@
 <section class="configuration">
   <form class="configuration__form" [formGroup]="configurationForm">
     <p-dropdown [options]="engines" formControlName="engine" placeholder="Rodzaj Silnika" />
+    @if (brands$ | async; as brands) {
     <p-dropdown [options]="brands" formControlName="brand" placeholder="Marka" />
-    <p-dropdown [options]="models" formControlName="model" placeholder="Model" />
+    }
+    @if (models$ | async; as models) {
+    <p-dropdown [options]="models!" formControlName="model" placeholder="Model" />
+    }
   </form>
   <hr />
 </section>
-@if (selectedModel) {
+@if (selectedModel$ | async; as selectedModel) {
 <app-lawnmower-details [lawnmower]="selectedModel"></app-lawnmower-details>
 }
 
