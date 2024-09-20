@@ -1,17 +1,17 @@
 <section class="configuration">
+  <h2 class="configuration__title">Wybierz kosiarkę!</h2>
   <form class="configuration__form" [formGroup]="configurationForm">
-    <p-dropdown [options]="engines" formControlName="engine" placeholder="Rodzaj Silnika" />
+    <p-dropdown class="configuration__dropdown" styleClass="full-width" [options]="engines" formControlName="engine" placeholder="Rodzaj Silnika" />
     @if (brands$ | async; as brands) {
-    <p-dropdown [options]="brands" formControlName="brand" placeholder="Marka" />
+    <p-dropdown class="configuration__dropdown" styleClass="full-width" [options]="brands" formControlName="brand" placeholder="Marka" />
     }
     @if (models$ | async; as models) {
-    <p-dropdown [options]="models!" formControlName="model" placeholder="Model" />
+    <p-dropdown class="configuration__dropdown" styleClass="full-width" [options]="models!" formControlName="model" placeholder="Model" />
     }
   </form>
-  <hr />
-</section>
-@if (selectedLawnmower$ | async; as selectedLawnmower) {
-<app-lawnmower-details [lawnmower]="selectedLawnmower"></app-lawnmower-details>
-}
+  @if (selectedLawnmower$ | async; as selectedLawnmower) {
+  <app-lawnmower-details [lawnmower]="selectedLawnmower"></app-lawnmower-details>
+  }
 
-<a class="configuration__button p-button" href="/order" (click)="proceedToOrder($event)">Proceed to order</a>
+  <a class="configuration__button p-button" href="/order" (click)="proceedToOrder($event)">Dalej</a>
+</section>
