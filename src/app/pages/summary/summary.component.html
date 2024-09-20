@@ -1,3 +1,11 @@
 <section class="summary">
-    <h2>Podsumowanie Zamówienia</h2>
+  <h2>Podsumowanie Zamówienia</h2>
+  @if (orderData$ | async; as orderData) {
+  <div class="summary__lawnmower">
+    {{orderData.lawnmower.engine}}
+  </div>
+  <div class="summary__order-data">
+    {{orderData.order}}
+  </div>
+  }
 </section>

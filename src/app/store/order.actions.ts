@@ -7,5 +7,5 @@ export const storeLawnmower = createAction(
 
 export const storeOrderDetails = createAction(
   '[Order] Store Order Data',
-  props<{ orderData: any }>()
+  props<{ order: any }>()
 );

@@ -66,23 +66,23 @@ export class OrderComponent implements OnInit {
 
   goToSummary(event: MouseEvent) {
     event.preventDefault();
-    console.log(
-      this.orderForm.controls.deliveryAddress.controls.firstName.errors
-    );
-    if (this.orderForm.valid) {
+    // console.log(
+    //   this.orderForm.controls.deliveryAddress.controls.firstName.errors
+    // );
+    // if (this.orderForm.valid) {
       this._router.navigateByUrl('/summary');
-    } else {
-      this.orderForm.markAllAsTouched();
-      this.orderForm.updateValueAndValidity();
+    // } else {
+    //   this.orderForm.markAllAsTouched();
+    //   this.orderForm.updateValueAndValidity();
 
-      this._messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Formularz wypełniony niepoprawnie!',
-      });
+    //   this._messageService.add({
+    //     severity: 'error',
+    //     summary: 'Error',
+    //     detail: 'Formularz wypełniony niepoprawnie!',
+    //   });
 
-      this._cdRef.detectChanges();
-    }
+    //   this._cdRef.detectChanges();
+    // }
 
     //TODO Save data to global service
   }

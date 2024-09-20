@@ -12,12 +12,15 @@ export const initialState: {
 
 export const orderReducer = createReducer(
   initialState,
-  on(storeLawnmower, (state, { lawnmower }) => ({
+  on(storeLawnmower, (state, { lawnmower }) => {
+    console.log('lawnmower', lawnmower)
+    
+    return {
     ...state,
     lawnmower,
-  })),
-  on(storeOrderDetails, (state, { orderData }) => ({
+  }}),
+  on(storeOrderDetails, (state, { order }) => ({
     ...state,
-    orderData,
+    order,
   }))
 );
