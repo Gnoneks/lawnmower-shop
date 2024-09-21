@@ -1,49 +1,57 @@
 <section class="order">
-  <form class="card flex justify-content-center order__form" [formGroup]="orderForm">
-    <div class="flex align-items-center">
-      Rodzaj Płatności*
-      @for (paymentType of paymentTypes; track $index) {
-      <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
-      <label [for]="paymentType.value">
-        {{paymentType.label}}
-      </label>
-      }
-    </div>
-    <div class="flex align-items-center">
-      Typ Dostawy*
-      @for (deliveryType of deliveryTypes; track $index) {
-      <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
-      <label [for]="deliveryType.value">
-        {{deliveryType.label}}
-      </label>
-      }
+  <h2 class="configuration__title">Szczegóły transakcji</h2>
+  <form class="order__form" [formGroup]="orderForm">
+    <div class="order__columns">
+      <div class="order__radio-group">
+        <h3>
+          Rodzaj Płatności*
+        </h3>
+        @for (paymentType of paymentTypes; track $index) {
+        <div>
+          <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
+          <label [for]="paymentType.value">
+            {{paymentType.label}}
+          </label>
+        </div>
+        }
+      </div>
+      <div class="order__radio-group">
+        <h3>
+          Typ Dostawy*
+        </h3>
+        @for (deliveryType of deliveryTypes; track $index) {
+        <div>
+          <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
+          <label [for]="deliveryType.value">
+            {{deliveryType.label}}
+          </label>
+        </div>
+        }
+      </div>
     </div>
     <div>
       <p-floatLabel>
-        <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
-        <label for="deliveryDate">Termin dostawy*</label>
+        <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-23h" [showTime]="true" hourFormat="23" />
+        <label for="deliveryDate">Termin dostawy</label>
       </p-floatLabel>
-      @if (orderForm.controls.deliveryDate.invalid && orderForm.controls.deliveryDate.touched) {
-      <p class="form-error">Proszę wybrać termin dostawy</p>
-      }
     </div>
+    <h3>Adres dostawy</h3>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
-    <div>
+    <h3>Użytkownicy kosiarki</h3>
+    <div class="order__allowed-users">
       @for (recipientControl of orderForm.controls.recipients.controls; track $index) {
-      <p>{{recipientControl.value.id}}</p>
-      <div>
-        <app-recipient-form [recipientForm]="recipientControl"></app-recipient-form>
-        <button (click)="removeRecipient(recipientControl.value.id)" [disabled]="orderForm.controls.recipients.controls.length <= 1">Remove recipient</button>
-      </div>
+        <app-recipient-form [recipientForm]="recipientControl" [showRemoveButton]="$index > 0" (removeRecipientOutput)="removeRecipient($event)"></app-recipient-form>
+        <p-divider />
       }
-      <button (click)="addNewRecipient()">Add new recipient</button>
+      <p-button class="order__add-recipient-button" (click)="addNewRecipient()" label="Dodaj następnego użytkownika"></p-button>
+      <p-divider />
     </div>
-    <div>
-      <a routerLink="/" class="p-button font-bold">
-        Go back
+    <div class="order__nav-buttons">
+      <a routerLink="/" class="p-button order__button">
+        Cofnij
       </a>
-      <a href="/summary" class="p-button font-bold" (click)="goToSummary($event)">
-        Go to summary
+      <a href="/summary" class="p-button order__button" (click)="goToSummary($event)">
+        Przejdź do podsumowania
       </a>
     </div>
   </form>

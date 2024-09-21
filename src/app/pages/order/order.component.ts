@@ -16,7 +16,8 @@ import { Store } from '@ngrx/store';
 import { storeOrderDetails } from '../../store/order.actions';
 import { OrderDetails } from '../../shared/models/purchase-data.model';
 import { Order } from '../../shared/models/order-details.model';
-import { Observable, Subject, take } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-order',
@@ -30,6 +31,7 @@ import { Observable, Subject, take } from 'rxjs';
     RouterLink,
     ToastModule,
     FloatLabelModule,
+    DividerModule,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',

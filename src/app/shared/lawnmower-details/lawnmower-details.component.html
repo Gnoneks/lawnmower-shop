@@ -3,35 +3,42 @@
   @switch (lawnmower().engine ) {
   @case (engineTypes.ACCUMULATOR) {
   <div class="lawnmower__property">
-    Ilość akumulatorów: {{lawnmower().accumulatorAmount}}
+    <span>Ilość akumulatorów:</span>
+    <span>{{lawnmower().accumulatorAmount}}</span>
   </div>
   <div class="lawnmower__property">
-    Pojemność akumulatora: {{lawnmower().accumulatorCapacity}}Ah
+    <span>Pojemność akumulatora:</span>
+    <span>{{lawnmower().accumulatorCapacity}}Ah</span>
   </div>
   <div class="lawnmower__property">
-    Kolor: {{lawnmower().color}}
+    <span>Kolor:</span><span>{{lawnmower().color}}</span>
   </div>
   }
   @case (engineTypes.COMBUSTION) {
   <div class="lawnmower__property">
-    Pojemność skokowa silnika: {{lawnmower().engineDisplacement}}cm3
+    <span>Pojemność skokowa silnika:</span>
+    <span>{{lawnmower().engineDisplacement}}cm3</span>
   </div>
   <div class="lawnmower__property">
-    Pojemność baku: {{lawnmower().tankCapacity}}L
+    <span>Pojemność baku:</span>
+    <span>{{lawnmower().tankCapacity}}L</span>
   </div>
   <div class="lawnmower__property">
-    Ilość poziomów koszenia: {{lawnmower().engineDisplacement}}
+    <span>Ilość poziomów koszenia:</span>
+    <span>{{lawnmower().engineDisplacement}}</span>
   </div>
   }
   @case (engineTypes.ELECTRIC) {
   <div class="lawnmower__property">
-    Długość kabla: {{lawnmower().cableLength}}m
+    <span>Długość kabla:</span><span>{{lawnmower().cableLength}}m</span>
   </div>
   <div class="lawnmower__property">
-    Ilość ostrzy: {{lawnmower().bladesAmount}}
+    <span>Ilość ostrzy:</span>
+    <span>{{lawnmower().bladesAmount}}</span>
   </div>
   <div class="lawnmower__property">
-    Kolor: {{lawnmower().color}}
+    <span>Kolor:</span>
+    <span>{{lawnmower().color}}</span>
   </div>
   }
   }

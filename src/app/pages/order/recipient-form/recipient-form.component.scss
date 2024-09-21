@@ -1,5 +1,25 @@
+@use "../../../shared/media-queries.scss";
+
 .recipient-form {
-    &__error {
-    color: var(--red-500);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    &__input {
+        width: 100%;
+    }
+}
+
+
+@media (min-width: media-queries.$tablet-up) {
+    .recipient-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &__field {
+            width: 45%;
+        }
     }
 }

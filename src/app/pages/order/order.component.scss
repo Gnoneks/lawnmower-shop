@@ -1,7 +1,45 @@
 .order {
-    // background-color: var(--surface-ground);
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+    padding: 16px;
+    margin: auto;
+    gap: 32px;
 
     &__form {
-    background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    &__columns {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__radio-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    &__allowed-users {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__add-recipient-button {
+        width: fit-content;
+    }
+
+    &__nav-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__button {
+        text-decoration: none;
     }
 }
