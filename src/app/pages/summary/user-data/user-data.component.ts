@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { RecipientData } from '../../../../shared/models/purchase-data.model';
+import { RecipientData } from '../../../shared/models/purchase-data.model';
 
 @Component({
   selector: 'app-user-data',
