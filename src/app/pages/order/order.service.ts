@@ -5,8 +5,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { DeliveryType } from './models/delivery-type.enum';
-import { PaymentType } from './models/payment-type.enum';
 import {
   OrderDetails,
   RecipientData,
@@ -35,7 +33,7 @@ export class OrderService {
     });
   }
 
-  private _createRecipientForm(newId?: number) {
+  private _createRecipientForm(id?: number) {
     const recipientForm = this._fb.group<TypedForm<RecipientData>>({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -46,11 +44,9 @@ export class OrderService {
       zipCode: ['', Validators.required],
     });
 
-    if (newId)
-      recipientForm.addControl(
-        'id',
-        new FormControl(newId, Validators.required)
-      );
+    if (id) {
+      recipientForm.addControl('id', new FormControl(id, Validators.required));
+    }
 
     return recipientForm;
   }

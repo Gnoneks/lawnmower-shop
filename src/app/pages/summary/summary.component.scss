@@ -1,9 +1,8 @@
-@use "../../shared/media-queries.scss";
-
 .summary {
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 720px;
     margin: auto;
     padding: 32px;
     gap: 32px;
@@ -29,7 +28,7 @@
         width: 100%;
     }
 
-    &__property {
+    &__property, &__nav-buttons {
         display: flex;
         justify-content: space-between;
     }
@@ -49,17 +48,5 @@
         display: flex;
         flex-direction: column;
         gap: 32px;
-    }
-
-    &__nav-buttons {
-        display: flex;
-        justify-content: space-between;
-    }
-}
-
-
-@media (min-width: media-queries.$tablet-up) {
-    .summary {
-        max-width: 720px;
     }
 }

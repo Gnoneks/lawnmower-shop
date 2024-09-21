@@ -9,7 +9,6 @@
       <p-inputMask styleClass="full-width" [formControlName]="field.value" mask="99-999" placeholder="99-999" />
       }
       <label [for]="field.value">{{field.label}}{{field.isMandatory ? '*' : ''}}</label>
-
     </p-floatLabel>
     <app-form-error [control]="recipientForm() | dynamicForm : field.value" message="{{field.label}} jest obowiązkowym polem"></app-form-error>
   </div>
