@@ -1,0 +1,15 @@
+.user-data {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: var(--surface-overlay);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--border-radius);
+    gap: 8px;
+
+    &__property {
+        display: flex;
+        justify-content: space-between;
+    }
+}

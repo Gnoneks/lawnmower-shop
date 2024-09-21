@@ -70,7 +70,7 @@ export class OrderComponent implements OnInit {
   goToSummary(event: MouseEvent) {
     event.preventDefault();
 
-    if (this.orderForm.valid) {
+    // if (this.orderForm.valid) {
       this._store.dispatch(
         storeOrderDetails({
           orderDetails: this.orderForm.value as OrderDetails,
@@ -78,15 +78,15 @@ export class OrderComponent implements OnInit {
       );
 
       this._router.navigateByUrl('/summary');
-    } else {
-      this.orderForm.markAllAsTouched();
-      this.orderForm.updateValueAndValidity();
+    // } else {
+    //   this.orderForm.markAllAsTouched();
+    //   this.orderForm.updateValueAndValidity();
 
-      this._messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Formularz wypełniony niepoprawnie!',
-      });
-    }
+    //   this._messageService.add({
+    //     severity: 'error',
+    //     summary: 'Error',
+    //     detail: 'Formularz wypełniony niepoprawnie!',
+    //   });
+    // }
   }
 }

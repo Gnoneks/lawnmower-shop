@@ -1,33 +1,54 @@
 <section class="summary">
   <h2>Podsumowanie Zamówienia</h2>
   @if (orderData$ | async; as orderData) {
-  @if (orderData.lawnmower; as lawnmower) {
-  <app-lawnmower-details [lawnmower]="lawnmower"></app-lawnmower-details>
-  }
-  @if (orderData.orderDetails; as orderDetails) {
-  <div class="summary__orderDetails-data">
-    <div>
-      Rodzaj płatności: {{orderDetails.paymentType}}
+  <div class="summary__details">
+    @if (orderData.lawnmower; as lawnmower) {
+    <p class="summary__section-title">Wybrana kosiarka:</p>
+    <app-lawnmower-details class="summary__lawnmower" [lawnmower]="lawnmower"></app-lawnmower-details>
+    }
+    @if (orderData.orderDetails; as orderDetails) {
+    <div class="summary__order">
+      <p class="summary__section-title">Szczegóły dostawy</p>
+      <div class="summary__order-details">
+        <div class="summary__property">
+          <span>
+            Rodzaj płatności:
+          </span>
+          <span>
+            {{orderDetails.paymentType}}
+          </span>
+        </div>
+        <div class="summary__property">
+          <span>
+            Rodzaj dostawy:
+          </span>
+          <span>
+            {{orderDetails.deliveryType}}
+          </span>
+        </div>
+        <div class="summary__property">
+          <span>
+            Data i godzina dostawy:
+          </span>
+          <span>
+            {{orderDetails.deliveryDate | date : "YYYY-MM-dd hh:mm"}}
+          </span>
+        </div>
+      </div>
+      <div>
+        <p class="summary__section-title">
+          Adres dostawy:
+        </p>
+        <app-user-data [user]="orderDetails.deliveryAddress"></app-user-data>
+      </div>
+      <div class="summary__users">
+        <p class="summary__section-title">Osoby upoważnione do używania kosiarki:</p>
+        @for (user of orderDetails.recipients; track $index) {
+        <app-user-data [user]="user"></app-user-data>
+        }
+      </div>
     </div>
-    <div>
-
-      Rodzaj dostawy: {{orderDetails.deliveryType}}
-    </div>
-    <div>
-
-      Data i godzina dostawy: {{orderDetails.deliveryDate}}
-    </div>
-    <div>
-      Adres dostawy:
-      <app-user-data [user]="orderDetails.deliveryAddress"></app-user-data>
-    </div>
-    <div>
-      Osoby upoważnione do używania kosiarki:
-      @for (user of orderDetails.recipients; track $index) {
-      <app-user-data [user]="user"></app-user-data>
-      }
-    </div>
+    }
   </div>
-  }
   }
 </section>
