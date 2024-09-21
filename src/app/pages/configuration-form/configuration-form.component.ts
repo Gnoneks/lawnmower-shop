@@ -9,6 +9,7 @@ import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmo
 import { AsyncPipe } from '@angular/common';
 import { Subject, Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-configuration-form',
@@ -20,6 +21,7 @@ import { MessageService } from 'primeng/api';
     ButtonModule,
     DropdownModule,
     LawnmowerDetailsComponent,
+    FloatLabelModule,
   ],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',

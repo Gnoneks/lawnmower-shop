@@ -1,5 +1,5 @@
 import { PaymentType } from '../models/payment-type.enum';
-import { SelectableOption } from '../models/selectable-option.model';
+import { SelectableOption } from '../../../shared/models/selectable-option.model';
 
 export const PAYMENT_TYPES: SelectableOption[] = [
   {
