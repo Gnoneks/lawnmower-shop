@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RecipientData } from '../../../shared/models/purchase-data.model';
+import { DataTileComponent } from '../../../shared/data-tile/data-tile.component';
 
 const USER_DATA_FIELDS: {
   label: string;
@@ -18,7 +19,7 @@ const USER_DATA_FIELDS: {
 @Component({
   selector: 'app-user-data',
   standalone: true,
-  imports: [],
+  imports: [DataTileComponent],
   templateUrl: './user-data.component.html',
   styleUrl: './user-data.component.scss',
 })

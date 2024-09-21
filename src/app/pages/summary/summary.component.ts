@@ -8,6 +8,7 @@ import { UserDataComponent } from './user-data/user-data.component';
 import { Order } from '../../shared/models/order-details.model';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
+import { DataTileComponent } from '../../shared/data-tile/data-tile.component';
 
 @Component({
   selector: 'app-summary',
@@ -19,6 +20,7 @@ import { MessageService } from 'primeng/api';
     UserDataComponent,
     ButtonModule,
     RouterLink,
+    DataTileComponent
   ],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss',
