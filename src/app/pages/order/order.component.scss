@@ -4,6 +4,7 @@
     max-width: 720px;
     padding: 16px;
     margin: auto;
+    gap: 32px;
 
     &__form {
         display: flex;
@@ -27,10 +28,6 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-    }
-
-    &__user-number {
-        // padding: 8px 0;
     }
 
     &__add-recipient-button {

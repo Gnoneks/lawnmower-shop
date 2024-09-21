@@ -3,52 +3,64 @@
   @if (orderData$ | async; as orderData) {
   <div class="summary__details">
     @if (orderData.lawnmower; as lawnmower) {
-    <p class="summary__section-title">Wybrana kosiarka:</p>
-    <app-lawnmower-details class="summary__lawnmower" [lawnmower]="lawnmower"></app-lawnmower-details>
+    <div>
+      <h3 class="summary__section-title">Wybrana kosiarka:</h3>
+      <app-lawnmower-details class="summary__lawnmower" [lawnmower]="lawnmower"></app-lawnmower-details>
+    </div>
     }
     @if (orderData.orderDetails; as orderDetails) {
     <div class="summary__order">
-      <p class="summary__section-title">Szczegóły dostawy</p>
-      <div class="summary__order-details">
-        <div class="summary__property">
-          <span>
-            Rodzaj płatności:
-          </span>
-          <span>
-            {{orderDetails.paymentType}}
-          </span>
-        </div>
-        <div class="summary__property">
-          <span>
-            Rodzaj dostawy:
-          </span>
-          <span>
-            {{orderDetails.deliveryType}}
-          </span>
-        </div>
-        <div class="summary__property">
-          <span>
-            Data i godzina dostawy:
-          </span>
-          <span>
-            {{orderDetails.deliveryDate | date : "YYYY-MM-dd hh:mm"}}
-          </span>
+      <div>
+        <h3 class="summary__section-title">Szczegóły dostawy</h3>
+        <div class="summary__order-details">
+          <div class="summary__property">
+            <span>
+              Rodzaj płatności:
+            </span>
+            <span>
+              {{orderDetails.paymentType}}
+            </span>
+          </div>
+          <div class="summary__property">
+            <span>
+              Rodzaj dostawy:
+            </span>
+            <span>
+              {{orderDetails.deliveryType}}
+            </span>
+          </div>
+          <div class="summary__property">
+            <span>
+              Data i godzina dostawy:
+            </span>
+            <span>
+              {{orderDetails.deliveryDate | date : "YYYY-MM-dd hh:mm"}}
+            </span>
+          </div>
         </div>
       </div>
       <div>
-        <p class="summary__section-title">
+        <h3 class="summary__section-title">
           Adres dostawy:
-        </p>
+        </h3>
         <app-user-data [user]="orderDetails.deliveryAddress"></app-user-data>
       </div>
-      <div class="summary__users">
-        <p class="summary__section-title">Osoby upoważnione do używania kosiarki:</p>
-        @for (user of orderDetails.recipients; track $index) {
-        <app-user-data [user]="user"></app-user-data>
-        }
+      <div>
+        <h3 class="summary__section-title">Osoby upoważnione do używania kosiarki:</h3>
+        <div class="summary__users">
+          @for (user of orderDetails.recipients; track $index) {
+          <app-user-data [user]="user"></app-user-data>
+          }
+        </div>
       </div>
     </div>
     }
   </div>
   }
+  <div class="summary__nav-buttons">
+    <a routerLink="/order" class="p-button">
+      Cofnij
+    </a>
+    <p-button (onClick)="confirmOrder()" label="Zatwierdź"></p-button>
+  </div>
 </section>

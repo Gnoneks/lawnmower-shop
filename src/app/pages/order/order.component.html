@@ -1,10 +1,11 @@
 <section class="order">
+  <h2 class="configuration__title">Szczegóły transakcji</h2>
   <form class="order__form" [formGroup]="orderForm">
     <div class="order__columns">
       <div class="order__radio-group">
-        <span>
+        <h3>
           Rodzaj Płatności*
-        </span>
+        </h3>
         @for (paymentType of paymentTypes; track $index) {
         <div>
           <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
@@ -15,9 +16,9 @@
         }
       </div>
       <div class="order__radio-group">
-        <span>
+        <h3>
           Typ Dostawy*
-        </span>
+        </h3>
         @for (deliveryType of deliveryTypes; track $index) {
         <div>
           <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
@@ -30,21 +31,22 @@
     </div>
     <div>
       <p-floatLabel>
-        <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
+        <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-23h" [showTime]="true" hourFormat="23" />
         <label for="deliveryDate">Termin dostawy</label>
       </p-floatLabel>
     </div>
-    <h4>Adresy dostaw</h4>
+    <h3>Adres dostawy</h3>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
     <div class="order__allowed-users">
-      <h4>Adresy osób, upoważnionych do używania kosiarki</h4>
+      <h3>Użytkownicy kosiarki</h3>
       @for (recipientControl of orderForm.controls.recipients.controls; track $index) {
-      <p class="order__user-number">{{$index + 1}}.</p>
       <div>
         <app-recipient-form [recipientForm]="recipientControl" [showRemoveButton]="$index > 0" (removeRecipientOutput)="removeRecipient($event)"></app-recipient-form>
+        <p-divider />
       </div>
       }
-      <p-button class="order__add-recipient-button" (click)="addNewRecipient()">Dodaj następnego użytkownika</p-button>
+      <p-button class="order__add-recipient-button" (click)="addNewRecipient()" label="Dodaj następnego użytkownika"></p-button>
+      <p-divider />
     </div>
     <div class="order__nav-buttons">
       <a routerLink="/" class="p-button order__button">

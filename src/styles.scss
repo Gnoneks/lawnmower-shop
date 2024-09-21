@@ -28,3 +28,10 @@ h1, h2, h3, h4, p {
 .full-width {
     width: 100%;
 }
+
+
+// <a> TAGS WERE MISSING THESE STYLES WHILE THEY ARE APPLIED ON <p-button> NATIVELY
+.p-button {
+    font-weight: bold;
+    text-decoration: none;
+}

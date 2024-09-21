@@ -16,7 +16,8 @@ import { Store } from '@ngrx/store';
 import { storeOrderDetails } from '../../store/order.actions';
 import { OrderDetails } from '../../shared/models/purchase-data.model';
 import { Order } from '../../shared/models/order-details.model';
-import { Observable, Subject, take } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-order',
@@ -30,6 +31,7 @@ import { Observable, Subject, take } from 'rxjs';
     RouterLink,
     ToastModule,
     FloatLabelModule,
+    DividerModule,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
@@ -52,11 +54,11 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this._orderData$
-    //   .pipe(take(1))
-    //   .subscribe(
-    //     ({ lawnmower }) => !lawnmower && this._router.navigateByUrl('/')
-    //   );
+    this._orderData$
+      .pipe(take(1))
+      .subscribe(
+        ({ lawnmower }) => !lawnmower && this._router.navigateByUrl('/')
+      );
   }
 
   addNewRecipient() {
@@ -70,7 +72,7 @@ export class OrderComponent implements OnInit {
   goToSummary(event: MouseEvent) {
     event.preventDefault();
 
-    // if (this.orderForm.valid) {
+    if (this.orderForm.valid) {
       this._store.dispatch(
         storeOrderDetails({
           orderDetails: this.orderForm.value as OrderDetails,
@@ -78,15 +80,15 @@ export class OrderComponent implements OnInit {
       );
 
       this._router.navigateByUrl('/summary');
-    // } else {
-    //   this.orderForm.markAllAsTouched();
-    //   this.orderForm.updateValueAndValidity();
+    } else {
+      this.orderForm.markAllAsTouched();
+      this.orderForm.updateValueAndValidity();
 
-    //   this._messageService.add({
-    //     severity: 'error',
-    //     summary: 'Error',
-    //     detail: 'Formularz wypełniony niepoprawnie!',
-    //   });
-    // }
+      this._messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Formularz wypełniony niepoprawnie!',
+      });
+    }
   }
 }
