@@ -8,6 +8,6 @@ export const storeLawnmower = createAction(
 );
 
 export const storeOrderDetails = createAction(
-  '[Order] Store Order Data',
+  '[Order Details] Store Order Data',
   props<{ orderDetails: OrderDetails }>()
 );

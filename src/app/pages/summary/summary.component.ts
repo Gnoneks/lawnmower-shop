@@ -24,7 +24,7 @@ import { GetLabelPipe } from './get-label.pipe';
     ButtonModule,
     RouterLink,
     DataTileComponent,
-    GetLabelPipe
+    GetLabelPipe,
   ],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss',
@@ -54,12 +54,8 @@ export class SummaryComponent implements OnInit {
     this._messageService.add({
       severity: 'success',
       summary: 'Success',
-      detail: 'Zamówienie zostało wysłane! Za chwilę nastąpi przekierowanie.',
+      detail:
+        'Zamówienie potwierdzone! Za chwilę nastąpi przekierowanie do bramki płatniczej.',
     });
-
-    setTimeout(() => {
-      
-      this._router.navigateByUrl('/');
-    }, 5000)
   }
 }
