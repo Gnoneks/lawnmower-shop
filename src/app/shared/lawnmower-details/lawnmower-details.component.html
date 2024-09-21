@@ -1,0 +1,17 @@
+<section class="lawnmower">
+  <app-data-tile>
+    <h3 class="lawnmower__name">{{lawnmower().brand}} {{lawnmower().model}}</h3>
+    @for (field of lawnmowerFields; track $index) {
+    @if (field.engine === lawnmower().engine) {
+    <div class="lawnmower__property">
+      <span>{{field.label}}</span>
+      <span>{{lawnmower()[field.value]}}</span>
+    </div>
+    }
+    }
+    <div class="lawnmower__property lawnmower__property--price">
+      <span>Cena: </span>
+      <span>{{lawnmower().price}}zł</span>
+    </div>
+  </app-data-tile>
+</section>

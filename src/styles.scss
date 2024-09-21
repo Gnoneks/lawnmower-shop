@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: var(--surface-ground);
+}
+
+* {
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+// SET 100% WIDTH ON PRIMENG ELEMENTS WITH 'styleClass' ATTRIBUTE
+.full-width {
+    width: 100%;
+}
+
+
+// <a> TAGS WERE MISSING THESE STYLES WHILE THEY ARE APPLIED ON <p-button> NATIVELY
+.p-button {
+    font-weight: bold;
+    text-decoration: none;
+}

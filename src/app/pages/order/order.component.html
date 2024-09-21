@@ -1,0 +1,60 @@
+<section class="order">
+  <h2 class="configuration__title">Szczegóły transakcji</h2>
+  <form class="order__form" [formGroup]="orderForm">
+    <div class="order__columns">
+      <div class="order__radio-group">
+        <h3>
+          Rodzaj Płatności*
+        </h3>
+        @for (paymentType of paymentTypes; track $index) {
+        <div>
+          <p-radioButton [value]="paymentType.value" formControlName="paymentType" [inputId]="paymentType.value" />
+          <label [for]="paymentType.value">
+            {{paymentType.label}}
+          </label>
+        </div>
+        }
+        <app-form-error [control]="orderForm.controls.paymentType" message="Proszę wybrać rodzaj płatności"></app-form-error>
+      </div>
+      <div class="order__radio-group">
+        <h3>
+          Typ Dostawy*
+        </h3>
+        @for (deliveryType of deliveryTypes; track $index) {
+        <div>
+          <p-radioButton [value]="deliveryType.value" formControlName="deliveryType" [inputId]="deliveryType.value" />
+          <label [for]="deliveryType.value">
+            {{deliveryType.label}}
+          </label>
+        </div>
+        }
+        <app-form-error [control]="orderForm.controls.deliveryType" message="Proszę wybrać typ dostawy"></app-form-error>
+      </div>
+    </div>
+    <div>
+      <p-floatLabel>
+        <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-23h" [showTime]="true" hourFormat="23" />
+        <label for="deliveryDate">Termin dostawy</label>
+      </p-floatLabel>
+    </div>
+    <h3>Adres dostawy</h3>
+    <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
+    <h3>Użytkownicy kosiarki</h3>
+    <div class="order__allowed-users">
+      @for (recipientControl of orderForm.controls.recipients.controls; track $index) {
+      <app-recipient-form [recipientForm]="recipientControl" [showRemoveButton]="$index > 0" (removeRecipientOutput)="removeRecipient($event)"></app-recipient-form>
+      <p-divider />
+      }
+      <p-button class="order__add-recipient-button" (click)="addNewRecipient()" label="Dodaj następnego użytkownika"></p-button>
+      <p-divider />
+    </div>
+    <div class="order__nav-buttons">
+      <a routerLink="/" class="p-button">
+        Cofnij
+      </a>
+      <a href="/summary" class="p-button" (click)="goToSummary($event)">
+        Przejdź do podsumowania
+      </a>
+    </div>
+  </form>
+</section>

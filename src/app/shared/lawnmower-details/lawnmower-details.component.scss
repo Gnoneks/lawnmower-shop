@@ -1,0 +1,12 @@
+.lawnmower {
+    &__property {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        overflow: hidden;
+
+        &--price {
+            font-weight: bold;
+        }
+    }
+}
