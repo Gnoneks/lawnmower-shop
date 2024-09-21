@@ -37,13 +37,11 @@
     </div>
     <h3>Adres dostawy</h3>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
+    <h3>Użytkownicy kosiarki</h3>
     <div class="order__allowed-users">
-      <h3>Użytkownicy kosiarki</h3>
       @for (recipientControl of orderForm.controls.recipients.controls; track $index) {
-      <div>
         <app-recipient-form [recipientForm]="recipientControl" [showRemoveButton]="$index > 0" (removeRecipientOutput)="removeRecipient($event)"></app-recipient-form>
         <p-divider />
-      </div>
       }
       <p-button class="order__add-recipient-button" (click)="addNewRecipient()" label="Dodaj następnego użytkownika"></p-button>
       <p-divider />
