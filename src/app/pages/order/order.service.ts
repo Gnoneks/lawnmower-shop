@@ -8,7 +8,7 @@ import {
 import {
   OrderDetails,
   RecipientData,
-} from '../../shared/models/purchase-data.model';
+} from '../../shared/models/order-details.model';
 import { TypedForm } from '../../shared/models/typed-form.model';
 
 @Injectable({ providedIn: 'root' })

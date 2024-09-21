@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { RecipientData } from '../../../shared/models/purchase-data.model';
+import { RecipientData } from '../../../shared/models/order-details.model';
 import { DataTileComponent } from '../../../shared/data-tile/data-tile.component';
 
 const USER_DATA_FIELDS: {
