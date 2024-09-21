@@ -1,12 +1,21 @@
 <section class="configuration">
   <h2 class="configuration__title">Wybierz kosiarkę!</h2>
   <form class="configuration__form" [formGroup]="configurationForm">
-    <p-dropdown class="configuration__dropdown" styleClass="full-width" [options]="engines" formControlName="engine" placeholder="Rodzaj Silnika" />
+    <p-floatLabel class="configuration__dropdown">
+      <p-dropdown styleClass="full-width" [options]="engines" formControlName="engine" />
+      <label for="float-label">Rodzaj Silnika</label>
+    </p-floatLabel>
     @if (brands$ | async; as brands) {
-    <p-dropdown class="configuration__dropdown" styleClass="full-width" [options]="brands" formControlName="brand" placeholder="Marka" />
+    <p-floatLabel class="configuration__dropdown">
+      <p-dropdown styleClass="full-width" [options]="brands" formControlName="brand" />
+      <label for="float-label">Marka</label>
+    </p-floatLabel>
     }
     @if (models$ | async; as models) {
-    <p-dropdown class="configuration__dropdown" styleClass="full-width" [options]="models!" formControlName="model" placeholder="Model" />
+    <p-floatLabel class="configuration__dropdown">
+      <p-dropdown styleClass="full-width" [options]="models!" formControlName="model" />
+      <label for="float-label">Model</label>
+    </p-floatLabel>
     }
   </form>
   @if (selectedLawnmower$ | async; as selectedLawnmower) {

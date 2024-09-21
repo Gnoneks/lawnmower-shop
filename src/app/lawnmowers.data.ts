@@ -9,6 +9,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     engineDisplacement: 100,
     tankCapacity: 0.75,
     cuttingLevelsAmount: 5,
+    price: 899.99,
   },
   {
     engine: Engine.COMBUSTION,
@@ -17,6 +18,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     engineDisplacement: 200,
     tankCapacity: 0.75,
     cuttingLevelsAmount: 5,
+    price: 725,
   },
   {
     engine: Engine.COMBUSTION,
@@ -25,6 +27,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     engineDisplacement: 125,
     tankCapacity: 1,
     cuttingLevelsAmount: 5,
+    price: 620,
   },
   {
     engine: Engine.ELECTRIC,
@@ -33,6 +36,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     cableLength: 20,
     bladesAmount: 4,
     color: 'Green',
+    price: 450,
   },
   {
     engine: Engine.ELECTRIC,
@@ -41,6 +45,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     cableLength: 25,
     bladesAmount: 1,
     color: 'Brown',
+    price: 420,
   },
   {
     engine: Engine.ELECTRIC,
@@ -49,6 +54,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     cableLength: 25,
     bladesAmount: 2,
     color: 'Yellow',
+    price: 840,
   },
   {
     engine: Engine.ACCUMULATOR,
@@ -57,6 +63,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     accumulatorAmount: 2,
     accumulatorCapacity: 4,
     color: 'Black',
+    price: 899.99,
   },
   {
     engine: Engine.ACCUMULATOR,
@@ -65,6 +72,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     accumulatorAmount: 2,
     accumulatorCapacity: 2.5,
     color: 'Orange',
+    price: 459.99,
   },
   {
     engine: Engine.ACCUMULATOR,
@@ -73,5 +81,6 @@ export const LAWNMOWNERS: Lawnmower[] = [
     accumulatorAmount: 3,
     accumulatorCapacity: 1.5,
     color: 'White',
+    price: 500,
   },
 ];

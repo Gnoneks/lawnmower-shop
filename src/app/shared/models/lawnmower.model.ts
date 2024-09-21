@@ -4,6 +4,7 @@ export interface Lawnmower {
   engine: Engine;
   brand: string;
   model: string;
+  price: number;
   engineDisplacement?: number;
   tankCapacity?: number;
   cuttingLevelsAmount?: number;
