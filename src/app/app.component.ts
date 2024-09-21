@@ -12,5 +12,4 @@ import { ToastModule } from 'primeng/toast';
   providers: [MessageService]
 })
 export class AppComponent {
-  title = 'lawnmower-shop';
 }

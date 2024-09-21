@@ -1,6 +1,5 @@
 import { DeliveryType } from '../models/delivery-type.enum';
-import { SelectableOption } from '../models/selectable-option.model';
-
+import { SelectableOption } from '../../../shared/models/selectable-option.model';
 
 export const DELIVERY_TYPES: SelectableOption[] = [
   {

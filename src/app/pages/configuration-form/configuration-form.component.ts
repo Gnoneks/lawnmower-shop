@@ -21,7 +21,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     ButtonModule,
     DropdownModule,
     LawnmowerDetailsComponent,
-    FloatLabelModule
+    FloatLabelModule,
   ],
   templateUrl: './configuration-form.component.html',
   styleUrl: './configuration-form.component.scss',

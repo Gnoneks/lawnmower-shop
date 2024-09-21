@@ -6,9 +6,9 @@ import { FormControl } from '@angular/forms';
   standalone: true,
   imports: [],
   templateUrl: './form-error.component.html',
-  styleUrl: './form-error.component.scss'
+  styleUrl: './form-error.component.scss',
 })
 export class FormErrorComponent {
-  control = input.required<FormControl>()
-  message = input.required<string>()
+  control = input.required<FormControl>();
+  message = input.required<string>();
 }

@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './data-tile.component.html',
-  styleUrl: './data-tile.component.scss'
+  styleUrl: './data-tile.component.scss',
 })
-export class DataTileComponent {
-
-}
+export class DataTileComponent {}

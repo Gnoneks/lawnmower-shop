@@ -1,4 +1,4 @@
-import { Engine } from "../../shared/models/engine.enum";
+import { Engine } from '../../shared/models/engine.enum';
 
 export interface ConfigurationForm {
   engine: Engine;
