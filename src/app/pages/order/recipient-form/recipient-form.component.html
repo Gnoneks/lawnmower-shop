@@ -11,13 +11,10 @@
       <label [for]="field.value">{{field.label}}{{field.isMandatory ? '*' : ''}}</label>
 
     </p-floatLabel>
-    <!-- TODO, below check to pipe -->
-    @if (recipientForm().get(field.value)?.invalid && recipientForm().get(field.value)?.touched) {
-    <p class="form-error">{{field.label}} jest obowiązkowym polem</p>
-    }
+    <app-form-error [control]="recipientForm() | dynamicForm : field.value" message="{{field.label}} jest obowiązkowym polem"></app-form-error>
   </div>
   }
   @if (showRemoveButton()) {
-    <p-button (click)="removeRecipient(recipientForm().value.id)" label="Usuń użytkownika"></p-button>
+  <p-button (click)="removeRecipient(recipientForm().value.id)" label="Usuń użytkownika"></p-button>
   }
 </form>

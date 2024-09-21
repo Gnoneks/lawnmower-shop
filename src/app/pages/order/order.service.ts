@@ -25,8 +25,8 @@ export class OrderService {
 
   initOrderForm(): FormGroup<TypedForm<OrderDetails>> {
     return this._fb.group<TypedForm<OrderDetails>>({
-      paymentType: [PaymentType.CARD, Validators.required],
-      deliveryType: [DeliveryType.COURIER, Validators.required],
+      paymentType: [null, Validators.required],
+      deliveryType: [null, Validators.required],
       deliveryDate: null,
       deliveryAddress: this._createRecipientForm(),
       recipients: this._fb.array([
