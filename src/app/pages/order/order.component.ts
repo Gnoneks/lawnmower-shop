@@ -35,7 +35,7 @@ import { DividerModule } from 'primeng/divider';
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
-  providers: [provideNativeDateAdapter(), MessageService],
+  providers: [provideNativeDateAdapter()],
 })
 export class OrderComponent implements OnInit {
   readonly orderForm = this._orderService.getOrderForm();
@@ -87,7 +87,7 @@ export class OrderComponent implements OnInit {
       this._messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Formularz wypełniony niepoprawnie!',
+        detail: 'Formularz wypełniony niepoprawnie',
       });
     }
   }

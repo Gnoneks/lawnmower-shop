@@ -22,7 +22,6 @@ import { MessageService } from 'primeng/api';
   ],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss',
-  providers: [MessageService]
 })
 export class SummaryComponent implements OnInit {
   readonly orderData$: Observable<Order>;
