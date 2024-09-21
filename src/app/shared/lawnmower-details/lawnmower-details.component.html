@@ -1,45 +1,11 @@
 <section class="lawnmower">
   <app-data-tile>
     <h3 class="lawnmower__name">{{lawnmower().brand}} {{lawnmower().model}}</h3>
-    @switch (lawnmower().engine ) {
-    @case (engineTypes.ACCUMULATOR) {
+    @for (field of lawnmowerFields; track $index) {
+    @if (field.engine === lawnmower().engine) {
     <div class="lawnmower__property">
-      <span>Ilość akumulatorów:</span>
-      <span>{{lawnmower().accumulatorAmount}}</span>
-    </div>
-    <div class="lawnmower__property">
-      <span>Pojemność akumulatora:</span>
-      <span>{{lawnmower().accumulatorCapacity}}Ah</span>
-    </div>
-    <div class="lawnmower__property">
-      <span>Kolor:</span><span>{{lawnmower().color}}</span>
-    </div>
-    }
-    @case (engineTypes.COMBUSTION) {
-    <div class="lawnmower__property">
-      <span>Pojemność skokowa silnika:</span>
-      <span>{{lawnmower().engineDisplacement}}cm3</span>
-    </div>
-    <div class="lawnmower__property">
-      <span>Pojemność baku:</span>
-      <span>{{lawnmower().tankCapacity}}L</span>
-    </div>
-    <div class="lawnmower__property">
-      <span>Ilość poziomów koszenia:</span>
-      <span>{{lawnmower().engineDisplacement}}</span>
-    </div>
-    }
-    @case (engineTypes.ELECTRIC) {
-    <div class="lawnmower__property">
-      <span>Długość kabla:</span><span>{{lawnmower().cableLength}}m</span>
-    </div>
-    <div class="lawnmower__property">
-      <span>Ilość ostrzy:</span>
-      <span>{{lawnmower().bladesAmount}}</span>
-    </div>
-    <div class="lawnmower__property">
-      <span>Kolor:</span>
-      <span>{{lawnmower().color}}</span>
+      <span>{{field.label}}</span>
+      <span>{{lawnmower()[field.value]}}</span>
     </div>
     }
     }
