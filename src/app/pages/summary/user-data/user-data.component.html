@@ -1,32 +1,10 @@
 <div class="user-data">
+  @for (field of userDataFields; track $index) {
+  @if (!field.optional || field.optional && user()[field.value]) {
   <div class="user-data__property">
-    <span>Imię:</span>
-    <span>{{user().firstName}}</span>
-  </div>
-  <div class="user-data__property">
-    <span>Nazwisko:</span>
-    <span>{{user().lastName}}</span>
-  </div>
-  <div class="user-data__property">
-    <span>Miasto:</span>
-    <span>{{user().city}}</span>
-  </div>
-  <div class="user-data__property">
-    <span>Ulica:</span>
-    <span>{{user().street}}</span>
-  </div>
-  <div class="user-data__property">
-    <span>Numer domu:</span>
-    <span>{{user().houseNumber}}</span>
-  </div>
-  @if (user().apartmentNumber) {
-  <div class="user-data__property">
-    <span>Numer mieszkania:</span>
-    <span>{{user().apartmentNumber}}</span>
+    <span>{{field.label}}</span>
+    <span>{{user()[field.value]}}</span>
   </div>
   }
-  <div class="user-data__property">
-    <span>Kod pocztowy:</span>
-    <span>{{user().zipCode}}</span>
-  </div>
+  }
 </div>
