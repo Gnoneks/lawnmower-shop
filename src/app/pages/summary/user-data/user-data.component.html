@@ -3,7 +3,7 @@
     @for (field of userDataFields; track $index) {
     @if (!field.optional || field.optional && user()[field.value]) {
     <div class="user-data__property">
-      <span>{{field.label}}</span>
+      <span>{{field.label}}:</span>
       <span>{{user()[field.value]}}</span>
     </div>
     }

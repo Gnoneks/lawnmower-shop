@@ -54,7 +54,12 @@ export class SummaryComponent implements OnInit {
     this._messageService.add({
       severity: 'success',
       summary: 'Success',
-      detail: 'Zamówienie zostało wysłane!',
+      detail: 'Zamówienie zostało wysłane! Za chwilę nastąpi przekierowanie.',
     });
+
+    setTimeout(() => {
+      
+      this._router.navigateByUrl('/');
+    }, 5000)
   }
 }

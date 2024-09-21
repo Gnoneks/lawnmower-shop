@@ -36,6 +36,11 @@
         justify-content: space-between;
     }
 
+    &__property {
+        gap: 16px;
+        overflow: hidden;
+    }
+
     &__nav-buttons {
         gap: 16px;
     }
