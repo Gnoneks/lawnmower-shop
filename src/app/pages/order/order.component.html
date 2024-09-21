@@ -31,29 +31,27 @@
     <div>
       <p-floatLabel>
         <p-calendar inputId="deliveryDate" formControlName="deliveryDate" inputId="calendar-24h" [showTime]="true" hourFormat="24" />
-        <label for="deliveryDate">Termin dostawy*</label>
+        <label for="deliveryDate">Termin dostawy</label>
       </p-floatLabel>
-      @if (orderForm.controls.deliveryDate.invalid && orderForm.controls.deliveryDate.touched) {
-      <p class="form-error">Proszę wybrać termin dostawy</p>
-      }
     </div>
+    <h4>Adresy dostaw</h4>
     <app-recipient-form [recipientForm]="orderForm.controls.deliveryAddress"></app-recipient-form>
-    <div>
+    <div class="order__allowed-users">
+      <h4>Adresy osób, upoważnionych do używania kosiarki</h4>
       @for (recipientControl of orderForm.controls.recipients.controls; track $index) {
-      <p>{{recipientControl.value.id}}</p>
+      <p class="order__user-number">{{$index + 1}}.</p>
       <div>
-        <app-recipient-form [recipientForm]="recipientControl"></app-recipient-form>
-        <button (click)="removeRecipient(recipientControl.value.id)" [disabled]="orderForm.controls.recipients.controls.length <= 1">Remove recipient</button>
+        <app-recipient-form [recipientForm]="recipientControl" [showRemoveButton]="$index > 0" (removeRecipientOutput)="removeRecipient($event)"></app-recipient-form>
       </div>
       }
-      <button (click)="addNewRecipient()">Add new recipient</button>
+      <p-button class="order__add-recipient-button" (click)="addNewRecipient()">Dodaj następnego użytkownika</p-button>
     </div>
-    <div>
-      <a routerLink="/" class="p-button font-bold">
-        Go back
+    <div class="order__nav-buttons">
+      <a routerLink="/" class="p-button order__button">
+        Cofnij
       </a>
-      <a href="/summary" class="p-button font-bold" (click)="goToSummary($event)">
-        Go to summary
+      <a href="/summary" class="p-button order__button" (click)="goToSummary($event)">
+        Przejdź do podsumowania
       </a>
     </div>
   </form>

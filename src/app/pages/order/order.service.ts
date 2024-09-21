@@ -13,7 +13,7 @@ import {
 } from '../../shared/models/purchase-data.model';
 import { TypedForm } from '../../shared/models/typed-form.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OrderService {
   private readonly _orderForm = this.initOrderForm();
 
@@ -27,7 +27,7 @@ export class OrderService {
     return this._fb.group<TypedForm<OrderDetails>>({
       paymentType: [PaymentType.CARD, Validators.required],
       deliveryType: [DeliveryType.COURIER, Validators.required],
-      deliveryDate: [null, Validators.required],
+      deliveryDate: null,
       deliveryAddress: this._createRecipientForm(),
       recipients: this._fb.array([
         this._createRecipientForm(Math.floor(Math.random() * 10000)),
@@ -58,9 +58,7 @@ export class OrderService {
   addNewRecipient() {
     const newId = Math.floor(Math.random() * 10000);
 
-    this._orderForm.controls.recipients.push(
-      this._createRecipientForm(newId)
-    );
+    this._orderForm.controls.recipients.push(this._createRecipientForm(newId));
   }
 
   removeRecipient(id: number) {

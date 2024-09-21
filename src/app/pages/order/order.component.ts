@@ -52,11 +52,11 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._orderData$
-      .pipe(take(1))
-      .subscribe(
-        ({ lawnmower }) => !lawnmower && this._router.navigateByUrl('/')
-      );
+    // this._orderData$
+    //   .pipe(take(1))
+    //   .subscribe(
+    //     ({ lawnmower }) => !lawnmower && this._router.navigateByUrl('/')
+    //   );
   }
 
   addNewRecipient() {
