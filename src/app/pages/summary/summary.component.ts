@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmower-details.component';
 import { Router, RouterLink } from '@angular/router';
-import { UserDataComponent } from './user-data/user-data/user-data.component';
+import { UserDataComponent } from './user-data/user-data.component';
 import { Order } from '../../shared/models/order-details.model';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
