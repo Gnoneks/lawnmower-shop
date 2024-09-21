@@ -5,12 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { DeliveryType } from './models/delivery-type.enum';
-import { PaymentType } from './models/payment-type.enum';
 import {
   OrderDetails,
   RecipientData,
-} from '../../shared/models/purchase-data.model';
+} from '../../shared/models/order-details.model';
 import { TypedForm } from '../../shared/models/typed-form.model';
 
 @Injectable({ providedIn: 'root' })
@@ -25,8 +23,8 @@ export class OrderService {
 
   initOrderForm(): FormGroup<TypedForm<OrderDetails>> {
     return this._fb.group<TypedForm<OrderDetails>>({
-      paymentType: [PaymentType.CARD, Validators.required],
-      deliveryType: [DeliveryType.COURIER, Validators.required],
+      paymentType: [null, Validators.required],
+      deliveryType: [null, Validators.required],
       deliveryDate: null,
       deliveryAddress: this._createRecipientForm(),
       recipients: this._fb.array([
@@ -35,7 +33,7 @@ export class OrderService {
     });
   }
 
-  private _createRecipientForm(newId?: number) {
+  private _createRecipientForm(id?: number) {
     const recipientForm = this._fb.group<TypedForm<RecipientData>>({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -46,11 +44,9 @@ export class OrderService {
       zipCode: ['', Validators.required],
     });
 
-    if (newId)
-      recipientForm.addControl(
-        'id',
-        new FormControl(newId, Validators.required)
-      );
+    if (id) {
+      recipientForm.addControl('id', new FormControl(id, Validators.required));
+    }
 
     return recipientForm;
   }

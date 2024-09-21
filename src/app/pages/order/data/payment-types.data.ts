@@ -8,7 +8,7 @@ export const PAYMENT_TYPES: SelectableOption[] = [
   },
   {
     value: PaymentType.BLIK,
-    label: 'BLik',
+    label: 'Blik',
   },
   {
     value: PaymentType.CASH,

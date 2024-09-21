@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Lawnmower } from '../shared/models/lawnmower.model';
 import { storeLawnmower, storeOrderDetails } from './order.actions';
-import { OrderDetails } from '../shared/models/purchase-data.model';
+import { OrderDetails } from '../shared/models/order-details.model';
 
 export const initialState: {
   lawnmower: Lawnmower | null;

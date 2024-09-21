@@ -12,13 +12,13 @@
     <div class="summary__order">
       <div>
         <h3 class="summary__section-title">Szczegóły dostawy</h3>
-        <div class="summary__order-details">
+        <app-data-tile>
           <div class="summary__property">
             <span>
               Rodzaj płatności:
             </span>
             <span>
-              {{orderDetails.paymentType}}
+              {{orderDetails.paymentType | getLabel : paymentTypes}}
             </span>
           </div>
           <div class="summary__property">
@@ -26,9 +26,10 @@
               Rodzaj dostawy:
             </span>
             <span>
-              {{orderDetails.deliveryType}}
+              {{orderDetails.deliveryType | getLabel : deliveryTypes}}
             </span>
           </div>
+          @if (orderDetails.deliveryDate) {
           <div class="summary__property">
             <span>
               Data i godzina dostawy:
@@ -37,7 +38,8 @@
               {{orderDetails.deliveryDate | date : "YYYY-MM-dd hh:mm"}}
             </span>
           </div>
-        </div>
+          }
+        </app-data-tile>
       </div>
       <div>
         <h3 class="summary__section-title">

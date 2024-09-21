@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmower-details.component';
 import { AsyncPipe } from '@angular/common';
 import { Subject, Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-configuration-form',
@@ -38,7 +39,8 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly _configurationFormService: ConfigurationFormService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -52,6 +54,13 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
       this._configurationFormService.storeLawnmower();
 
       this._router.navigateByUrl('/order');
+    } else {
+      console.log('err');
+      this._messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Proszę wybrać model kosiarki',
+      });
     }
   }
 

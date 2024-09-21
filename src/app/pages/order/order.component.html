@@ -14,6 +14,7 @@
           </label>
         </div>
         }
+        <app-form-error [control]="orderForm.controls.paymentType" message="Proszę wybrać rodzaj płatności"></app-form-error>
       </div>
       <div class="order__radio-group">
         <h3>
@@ -27,6 +28,7 @@
           </label>
         </div>
         }
+        <app-form-error [control]="orderForm.controls.deliveryType" message="Proszę wybrać typ dostawy"></app-form-error>
       </div>
     </div>
     <div>
@@ -40,20 +42,19 @@
     <h3>Użytkownicy kosiarki</h3>
     <div class="order__allowed-users">
       @for (recipientControl of orderForm.controls.recipients.controls; track $index) {
-        <app-recipient-form [recipientForm]="recipientControl" [showRemoveButton]="$index > 0" (removeRecipientOutput)="removeRecipient($event)"></app-recipient-form>
-        <p-divider />
+      <app-recipient-form [recipientForm]="recipientControl" [showRemoveButton]="$index > 0" (removeRecipientOutput)="removeRecipient($event)"></app-recipient-form>
+      <p-divider />
       }
       <p-button class="order__add-recipient-button" (click)="addNewRecipient()" label="Dodaj następnego użytkownika"></p-button>
       <p-divider />
     </div>
     <div class="order__nav-buttons">
-      <a routerLink="/" class="p-button order__button">
+      <a routerLink="/" class="p-button">
         Cofnij
       </a>
-      <a href="/summary" class="p-button order__button" (click)="goToSummary($event)">
+      <a href="/summary" class="p-button" (click)="goToSummary($event)">
         Przejdź do podsumowania
       </a>
     </div>
   </form>
 </section>
-<p-toast />

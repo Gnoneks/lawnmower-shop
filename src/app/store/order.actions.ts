@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Lawnmower } from '../shared/models/lawnmower.model';
-import { OrderDetails } from '../shared/models/purchase-data.model';
+import { OrderDetails } from '../shared/models/order-details.model';
 
 export const storeLawnmower = createAction(
   '[Lawnmower] Store Lawnmower',
@@ -8,6 +8,6 @@ export const storeLawnmower = createAction(
 );
 
 export const storeOrderDetails = createAction(
-  '[Order] Store Order Data',
+  '[Order Details] Store Order Data',
   props<{ orderDetails: OrderDetails }>()
 );

@@ -14,10 +14,11 @@ import { MessageService } from 'primeng/api';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { Store } from '@ngrx/store';
 import { storeOrderDetails } from '../../store/order.actions';
-import { OrderDetails } from '../../shared/models/purchase-data.model';
-import { Order } from '../../shared/models/order-details.model';
+import { OrderDetails } from '../../shared/models/order-details.model';
+import { Order } from '../../shared/models/order.model';
 import { Observable, take } from 'rxjs';
 import { DividerModule } from 'primeng/divider';
+import { FormErrorComponent } from '../../shared/form-error/form-error.component';
 
 @Component({
   selector: 'app-order',
@@ -32,10 +33,11 @@ import { DividerModule } from 'primeng/divider';
     ToastModule,
     FloatLabelModule,
     DividerModule,
+    FormErrorComponent,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
-  providers: [provideNativeDateAdapter(), MessageService],
+  providers: [provideNativeDateAdapter()],
 })
 export class OrderComponent implements OnInit {
   readonly orderForm = this._orderService.getOrderForm();
@@ -87,7 +89,7 @@ export class OrderComponent implements OnInit {
       this._messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: 'Formularz wypełniony niepoprawnie!',
+        detail: 'Formularz wypełniony niepoprawnie',
       });
     }
   }

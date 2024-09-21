@@ -1,4 +1,4 @@
-.user-data {
+.data-tile {
     max-width: 720px;
     display: flex;
     flex-direction: column;
@@ -7,9 +7,4 @@
     border: 1px solid var(--surface-border);
     border-radius: var(--border-radius);
     gap: 8px;
-
-    &__property {
-        display: flex;
-        justify-content: space-between;
-    }
 }

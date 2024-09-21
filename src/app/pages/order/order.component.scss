@@ -6,40 +6,32 @@
     margin: auto;
     gap: 32px;
 
-    &__form {
+    &__form,
+    &__radio-group,
+    &__allowed-users {
         display: flex;
         flex-direction: column;
+    }
+
+    &__form {
         gap: 32px;
     }
 
-    &__columns {
+    &__columns, &__nav-buttons {
         display: flex;
         justify-content: space-between;
     }
 
     &__radio-group {
-        display: flex;
-        flex-direction: column;
         justify-content: space-between;
         gap: 16px;
     }
 
     &__allowed-users {
-        display: flex;
-        flex-direction: column;
         gap: 16px;
     }
 
     &__add-recipient-button {
         width: fit-content;
-    }
-
-    &__nav-buttons {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__button {
-        text-decoration: none;
-    }
+}
 }

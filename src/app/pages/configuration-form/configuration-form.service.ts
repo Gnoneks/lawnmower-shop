@@ -16,7 +16,7 @@ import { Store } from '@ngrx/store';
 import { storeLawnmower } from '../../store/order.actions';
 import { TypedForm } from '../../shared/models/typed-form.model';
 import { Engine } from '../../shared/models/engine.enum';
-import { Order } from '../../shared/models/order-details.model';
+import { Order } from '../../shared/models/order.model';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigurationFormService {
