@@ -34,7 +34,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     brand: 'Lawnmower Masterz',
     model: 'Cut them grass',
     engineDisplacement: 150,
-    tankCapacity: 0.90,
+    tankCapacity: 0.9,
     cuttingLevelsAmount: 3,
     price: 800,
   },
@@ -53,7 +53,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Cutting Edge',
     cableLength: 20,
     bladesAmount: 4,
-    color: 'Green',
+    color: 'Zielony',
     price: 450,
   },
   {
@@ -62,7 +62,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Lorem',
     cableLength: 15,
     bladesAmount: 3,
-    color: 'Green',
+    color: 'Zielony',
     price: 350,
   },
   {
@@ -71,7 +71,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Ipsum',
     cableLength: 15,
     bladesAmount: 3,
-    color: 'Yellow',
+    color: 'Żółty',
     price: 300,
   },
   {
@@ -80,7 +80,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Grass Eater',
     cableLength: 25,
     bladesAmount: 1,
-    color: 'Brown',
+    color: 'Brązowy',
     price: 420,
   },
   {
@@ -89,7 +89,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Neighbour alarm',
     cableLength: 35,
     bladesAmount: 3,
-    color: 'Black',
+    color: 'Czarny',
     price: 550,
   },
   {
@@ -98,7 +98,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'ARS X',
     cableLength: 25,
     bladesAmount: 2,
-    color: 'Yellow',
+    color: 'Żółty',
     price: 840,
   },
   {
@@ -107,7 +107,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'BOI V',
     cableLength: 15,
     bladesAmount: 2,
-    color: 'Pink',
+    color: 'Różowy',
     price: 500,
   },
   {
@@ -116,7 +116,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Edge Lord',
     accumulatorAmount: 2,
     accumulatorCapacity: 4,
-    color: 'Black',
+    color: 'Czarny',
     price: 899.99,
   },
   {
@@ -125,7 +125,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Good sleep killer',
     accumulatorAmount: 3,
     accumulatorCapacity: 1,
-    color: 'Purple',
+    color: 'Fioletowy',
     price: 699.99,
   },
   {
@@ -134,7 +134,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Faz Bar',
     accumulatorAmount: 2,
     accumulatorCapacity: 2.5,
-    color: 'Orange',
+    color: 'Pomarańczowy',
     price: 459.99,
   },
   {
@@ -143,7 +143,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Hello There',
     accumulatorAmount: 3,
     accumulatorCapacity: 4.5,
-    color: 'Teal',
+    color: 'Ekri',
     price: 559.99,
   },
   {
@@ -152,7 +152,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Yes',
     accumulatorAmount: 3,
     accumulatorCapacity: 1.5,
-    color: 'White',
+    color: 'Biały',
     price: 500,
   },
   {
@@ -161,7 +161,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'No',
     accumulatorAmount: 2,
     accumulatorCapacity: 3,
-    color: 'White',
+    color: 'Biały',
     price: 300,
   },
   {
@@ -170,7 +170,7 @@ export const LAWNMOWNERS: Lawnmower[] = [
     model: 'Maybe',
     accumulatorAmount: 4,
     accumulatorCapacity: 5.5,
-    color: 'White',
+    color: 'Biały',
     price: 299.99,
   },
 ];
