@@ -1,14 +1,10 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ConfigurationForm } from './configuration-form.model';
 import {
   BehaviorSubject,
-  filter,
-  Observable,
   pairwise,
   startWith,
-  Subject,
-  takeUntil,
 } from 'rxjs';
 import { LAWNMOWNERS } from '../../lawnmowers.data';
 import { Lawnmower } from '../../shared/models/lawnmower.model';
