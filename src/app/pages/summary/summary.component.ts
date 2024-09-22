@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { LawnmowerDetailsComponent } from '../../shared/lawnmower-details/lawnmower-details.component';
 import { Router, RouterLink } from '@angular/router';
 import { UserDataComponent } from './user-data/user-data.component';
 import { Order } from '../../shared/models/order.model';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
-import { DataTileComponent } from '../../shared/data-tile/data-tile.component';
 import { PAYMENT_TYPES } from '../order/data/payment-types.data';
 import { DELIVERY_TYPES } from '../order/data/delivery-types.data';
 import { GetLabelPipe } from './get-label.pipe';
+import { LawnmowerDetailsComponent } from '../../shared/components/lawnmower-details/lawnmower-details.component';
+import { DataTileComponent } from '../../shared/components/data-tile/data-tile.component';
 
 @Component({
   selector: 'app-summary',

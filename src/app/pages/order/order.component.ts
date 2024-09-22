@@ -18,7 +18,7 @@ import { OrderDetails } from '../../shared/models/order-details.model';
 import { Order } from '../../shared/models/order.model';
 import { Observable, take } from 'rxjs';
 import { DividerModule } from 'primeng/divider';
-import { FormErrorComponent } from '../../shared/form-error/form-error.component';
+import { FormErrorComponent } from '../../shared/components/form-error/form-error.component';
 
 @Component({
   selector: 'app-order',
