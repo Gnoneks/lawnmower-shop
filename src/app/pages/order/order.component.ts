@@ -88,7 +88,7 @@ export class OrderComponent implements OnInit {
 
       this._messageService.add({
         severity: 'error',
-        summary: 'Error',
+        summary: 'Błąd',
         detail: 'Formularz wypełniony niepoprawnie',
       });
     }

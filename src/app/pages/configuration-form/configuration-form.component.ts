@@ -60,7 +60,7 @@ export class ConfigurationFormComponent implements OnInit, OnDestroy {
       console.log('err');
       this._messageService.add({
         severity: 'error',
-        summary: 'Error',
+        summary: 'Błąd',
         detail: 'Proszę wybrać model kosiarki',
       });
     }
