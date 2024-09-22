@@ -1,5 +1,5 @@
-import { Engine } from '../models/engine.enum';
-import { Lawnmower } from '../models/lawnmower.model';
+import { Engine } from "../../models/engine.enum";
+import { Lawnmower } from "../../models/lawnmower.model";
 
 export const LAWNMOWER_DETAILS_FIELDS: LawnmowerDetailsField[] = [
   {

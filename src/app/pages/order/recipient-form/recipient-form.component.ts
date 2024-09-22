@@ -7,8 +7,8 @@ import { RECIPIENT_FORM } from './recipient-form.data';
 import { TypedForm } from '../../../shared/models/typed-form.model';
 import { RecipientData } from '../../../shared/models/order-details.model';
 import { ButtonModule } from 'primeng/button';
-import { FormErrorComponent } from '../../../shared/form-error/form-error.component';
 import { DynamicFormPipe } from './dynamic-form.pipe';
+import { FormErrorComponent } from '../../../shared/components/form-error/form-error.component';
 
 @Component({
   selector: 'app-recipient-form',

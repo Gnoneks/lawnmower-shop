@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
-import { Lawnmower } from '../models/lawnmower.model';
-import { Engine } from '../models/engine.enum';
 import { DataTileComponent } from '../data-tile/data-tile.component';
 import { LAWNMOWER_DETAILS_FIELDS } from './lawnmower-details-fields.data';
+import { Lawnmower } from '../../models/lawnmower.model';
+import { Engine } from '../../models/engine.enum';
 
 @Component({
   selector: 'app-lawnmower-details',
