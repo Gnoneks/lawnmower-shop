@@ -17,10 +17,15 @@
         gap: 32px;
     }
 
-    &__columns,
+    &__radio-settings,
     &__nav-buttons {
         display: flex;
         justify-content: space-between;
+        gap: 16px;
+    }
+
+    &__radio-settings {
+        flex-direction: column;
     }
 
     &__radio-group {
@@ -34,5 +39,11 @@
 
     &__add-recipient-button {
         width: fit-content;
+    }
+}
+
+@media (min-width: 456px) {
+    .order__radio-settings {
+        flex-direction: row;
     }
 }

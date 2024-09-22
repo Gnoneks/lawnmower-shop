@@ -53,9 +53,9 @@ export class SummaryComponent implements OnInit {
   confirmOrder() {
     this._messageService.add({
       severity: 'success',
-      summary: 'Success',
+      summary: 'Zamówienie potwierdzone',
       detail:
-        'Zamówienie potwierdzone! Za chwilę nastąpi przekierowanie do bramki płatniczej.',
+        'Za chwilę nastąpi przekierowanie do bramki płatniczej.',
     });
   }
 }
